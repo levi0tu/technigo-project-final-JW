@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 
 export const Dashboard = () => {
@@ -12,9 +13,9 @@ export const Dashboard = () => {
     }
 
     return (
-        <div>
+        <Layout>
             <h2>Dashboard</h2>
             <button onClick={handleLogout}>Log out</button>
-        </div>
+        </Layout>
     )
 }

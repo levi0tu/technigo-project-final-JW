@@ -1,6 +1,7 @@
 import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
 import { useNavigate } from "react-router-dom"
+import { Layout } from "../components/Layout"
+import { AuthContext } from "../context/AuthContext"
 
 
 export const Login = () => {
@@ -13,9 +14,9 @@ export const Login = () => {
     }
 
     return (
-        <div>
+        <Layout>
             <h2>Login</h2>
             <button onClick={handleLogin}>Login</button>
-        </div>
+        </Layout>
     )
 }
