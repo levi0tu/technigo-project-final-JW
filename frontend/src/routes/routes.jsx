@@ -7,6 +7,7 @@ import { Learn } from "../pages/Learn"
 import { Dashboard } from "../pages/Dashboard"
 import { Debts } from "../pages/Debts"
 import { DebtDetail } from "../pages/DebtDetail"
+import { ProtectedRoute } from "./ProtectedRoute"
 
 
 export const AppRoutes = () => {
@@ -17,9 +18,21 @@ export const AppRoutes = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/simulator" element={<Simulator />} />
             <Route path="/learn" element={<Learn />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/debts" element={<Debts />} />
-            <Route path="/debts/:id" element={<DebtDetail />} />
+            <Route path="/dashboard" element={
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            } />
+            <Route path="/debts" element={
+                <ProtectedRoute>
+                    <Debts />
+                </ProtectedRoute>
+            } />
+            <Route path="/debts/:id" element={
+                <ProtectedRoute>
+                    <DebtDetail />
+                </ProtectedRoute>
+            } />
 
         </Routes>
     )
