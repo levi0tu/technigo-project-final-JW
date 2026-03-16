@@ -1,8 +1,8 @@
-import { Home } from "./pages/Home"
+import { AppRoutes } from "./routes/routes"
 
 export const App = () => {
 
   return (
-    <Home />
+    <AppRoutes />
   )
 }
