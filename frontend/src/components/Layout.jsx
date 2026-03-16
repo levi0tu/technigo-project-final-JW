@@ -11,6 +11,9 @@ export const Layout = ({ children }) => {
                     <Link to="/register">Register</Link>
                     <Link to="/simulator">Simulator</Link>
                     <Link to="/learn">Learn</Link>
+                    <Link to="/dashboard">Dashboard</Link>
+                    <Link to="/debts">My Debts</Link>
+
                 </nav>
             </header>
             <main>{children}</main>
