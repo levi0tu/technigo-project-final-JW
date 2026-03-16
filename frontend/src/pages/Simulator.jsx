@@ -1,3 +1,9 @@
+import { Layout } from "../components/Layout"
+
 export const Simulator = () => {
-    return <h2>Simulator</h2>
+    return (
+        <Layout>
+            <h2>Simulator</h2>
+        </Layout>
+    )
 }
