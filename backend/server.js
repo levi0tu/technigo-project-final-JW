@@ -31,6 +31,13 @@ app.post("/register", async (req, res) => {
   }
 
   try {
+    const existingUser = await User.findOne({ email })
+
+    if (existingUser) {
+      res.status(400).json({ message: "E-postadressen används redan" })
+      return
+    }
+
     const newUser = new User({
       name,
       email,
