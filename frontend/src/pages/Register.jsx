@@ -10,7 +10,8 @@ export const Register = () => {
     })
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(formData)
+        alert("Konto skapat")
+
     }
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -31,27 +32,26 @@ export const Register = () => {
                     name="name"
                     type="text"
                     value={formData.name}
-                    onChange={(handleChange) =>
-                        setFormData({ ...formData, name: event.target.value })
-                    } />
+                    onChange={handleChange}
+                    required />
                 <label htmlFor="email">E-post</label>
                 <input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
-                    onChange={(handleChange) =>
-                        setFormData({ ...formData, email: event.target.value })
-                    } />
+                    onChange={handleChange}
+                    required
+                />
                 <label htmlFor="password">Lösenord</label>
                 <input
                     id="password"
                     name="password"
                     type="password"
                     value={formData.password}
-                    onChange={(handleChange) =>
-                        setFormData({ ...formData, password: event.target.value })
-                    } />
+                    onChange={handleChange}
+                    required
+                />
                 <button>Skapa konto</button>
             </form>
 
