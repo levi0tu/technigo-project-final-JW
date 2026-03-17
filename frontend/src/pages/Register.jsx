@@ -11,6 +11,11 @@ export const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         alert("Konto skapat")
+        setFormData({
+            name: "",
+            email: "",
+            password: "",
+        })
 
     }
     const handleChange = (event) => {
