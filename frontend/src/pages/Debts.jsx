@@ -13,6 +13,7 @@ export const Debts = () => {
             {debts.map((debt => (
                 <div key={debt.id}>
                     <Link to={`/debts/${debt.id}`}>{debt.name}</Link>
+                    <Link to="/debts/99">Open missing debt</Link>
                 </div>
             )))}
         </Layout>
