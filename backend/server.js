@@ -19,7 +19,23 @@ app.use(express.json())
 // Start defining your routes here
 // http://localhost:8080/
 app.get("/", (req, res) => {
-  res.send("Hello Technigo!")
+  res.send("Växla Upp API")
+})
+app.post("/register", (req, res) => {
+  const { name, email, password } = req.body
+
+  if (!name || !email || !password) {
+    res.status(400).json({ message: "Alla fält måste fyllas i" })
+    return
+  }
+  res.json({
+    message: "Användare registrerad",
+    user: {
+      name,
+      email,
+      password,
+    },
+  })
 })
 
 // Start the server
