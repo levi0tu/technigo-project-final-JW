@@ -1,6 +1,7 @@
 import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
+import { User } from "./models/User.js"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl)
@@ -21,21 +22,30 @@ app.use(express.json())
 app.get("/", (req, res) => {
   res.send("Växla Upp API")
 })
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
   const { name, email, password } = req.body
 
   if (!name || !email || !password) {
     res.status(400).json({ message: "Alla fält måste fyllas i" })
     return
   }
-  res.json({
-    message: "Användare registrerad",
-    user: {
+
+  try {
+    const newUser = new User({
       name,
       email,
       password,
-    },
-  })
+    })
+
+    await newUser.save()
+
+    res.status(201).json({
+      message: "Användare registrerad",
+      user: newUser,
+    })
+  } catch (error) {
+    res.status(500).json({ message: "Något gick fel" })
+  }
 })
 
 app.post("/login", (req, res) => {
