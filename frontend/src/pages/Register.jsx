@@ -33,7 +33,9 @@ export const Register = () => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
-                    required />
+                    required
+                    autoComplete="name"
+                />
                 <label htmlFor="email">E-post</label>
                 <input
                     id="email"
@@ -42,6 +44,7 @@ export const Register = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    autoComplete="email"
                 />
                 <label htmlFor="password">Lösenord</label>
                 <input
@@ -51,6 +54,7 @@ export const Register = () => {
                     value={formData.password}
                     onChange={handleChange}
                     required
+                    autoComplete="new-password"
                 />
                 <button>Skapa konto</button>
             </form>

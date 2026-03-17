@@ -17,6 +17,13 @@ export const Login = () => {
         setIsLoggedIn(true)
         navigate("/dashboard")
     }
+    const handleChange = (event) => {
+        const { name, value } = event.target
+        setFormData({
+            ...formData,
+            [name]: value,
+        })
+    }
 
     return (
         <Layout>
@@ -29,18 +36,20 @@ export const Login = () => {
                     name="email"
                     type="email"
                     value={formData.email}
-                    onChange={(event) =>
-                        setFormData({ ...formData, email: event.target.value })}
-                    required />
+                    onChange={handleChange}
+                    required
+                    autoComplete="email"
+                />
                 <label htmlFor="password">Lösenord</label>
                 <input
                     id="password"
                     name="password"
                     type="password"
                     value={formData.password}
-                    onChange={(event) =>
-                        setFormData({ ...formData, password: event.target.value })}
-                    required />
+                    onChange={handleChange}
+                    required
+                    autoComplete="current-password"
+                />
                 <button>Logga in</button>
             </form>
         </Layout>
