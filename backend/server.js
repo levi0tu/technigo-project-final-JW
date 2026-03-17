@@ -38,6 +38,17 @@ app.post("/register", (req, res) => {
   })
 })
 
+app.post("/login", (req, res) => {
+  const { email, password } = req.body
+
+  if (!email || !password) {
+    res.status(400).json({ message: "E-post och lösenord krävs" })
+    return
+  }
+
+  res.json({ message: "Inloggning lyckades" })
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
