@@ -14,8 +14,8 @@ export const Dashboard = () => {
 
     return (
         <Layout>
-            <h2>Dashboard</h2>
-            <button onClick={handleLogout}>Log out</button>
+            <h2>Översikt</h2>
+            <button onClick={handleLogout}>Logga ut</button>
         </Layout>
     )
 }

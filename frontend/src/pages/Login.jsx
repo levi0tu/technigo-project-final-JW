@@ -15,8 +15,8 @@ export const Login = () => {
 
     return (
         <Layout>
-            <h2>Login</h2>
-            <button onClick={handleLogin}>Login</button>
+            <h2>Logga in</h2>
+            <button onClick={handleLogin}>Logga in</button>
         </Layout>
     )
 }

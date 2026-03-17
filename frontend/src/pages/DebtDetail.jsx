@@ -5,7 +5,7 @@ export const DebtDetail = () => {
     const { id } = useParams()
 
     const debts = [
-        { id: "1", name: "Phone" },
+        { id: "1", name: "Mobil" },
         { id: "2", name: "Jeans" },
     ]
 
@@ -13,9 +13,9 @@ export const DebtDetail = () => {
 
     return (
         <Layout>
-            <h2>Debt Detail</h2>
-            <p>Debt ID: {id}</p>
-            <p>Debt name: {debt ? debt.name : "Not found"}</p>
+            <h2>Skulddetaljer</h2>
+            <p>Skuld-ID: {id}</p>
+            <p>Skuld: {debt ? debt.name : "Hittades inte"}</p>
         </Layout>
     )
 }
