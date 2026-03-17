@@ -15,7 +15,8 @@ export const Dashboard = () => {
     return (
         <Layout>
             <h2>Översikt</h2>
-            <p>Här får ud snabbt koll på läget.</p>
+            <p>Här ser du snabbt hur läget ser ut just nu.</p>
+            <p>Du har 2 aktiva skulder just nu</p>
             <button onClick={handleLogout}>Logga ut</button>
         </Layout>
     )
