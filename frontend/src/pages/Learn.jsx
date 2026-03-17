@@ -4,6 +4,7 @@ export const Learn = () => {
     return (
         <Layout>
             <h2>Guider</h2>
+            <p>Få bättre koll på ränta, krediter och avbetalningar.</p>
         </Layout>
     )
 }

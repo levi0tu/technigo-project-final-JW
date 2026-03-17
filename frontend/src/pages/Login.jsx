@@ -16,6 +16,7 @@ export const Login = () => {
     return (
         <Layout>
             <h2>Logga in</h2>
+            <p>Växla upp din koll på pengarna.</p>
             <button onClick={handleLogin}>Logga in</button>
         </Layout>
     )

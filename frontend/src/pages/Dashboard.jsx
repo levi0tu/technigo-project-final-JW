@@ -15,6 +15,7 @@ export const Dashboard = () => {
     return (
         <Layout>
             <h2>Översikt</h2>
+            <p>Här får ud snabbt koll på läget.</p>
             <button onClick={handleLogout}>Logga ut</button>
         </Layout>
     )

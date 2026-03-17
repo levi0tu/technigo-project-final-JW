@@ -10,6 +10,7 @@ export const Debts = () => {
     return (
         <Layout>
             <h2>Mina skulder</h2>
+            <p>Här ser du alla dina skulder på ett ställe</p>
             {debts.map((debt => (
                 <div key={debt.id}>
                     <Link to={`/debts/${debt.id}`}>{debt.name}</Link>

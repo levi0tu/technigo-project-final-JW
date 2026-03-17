@@ -14,6 +14,7 @@ export const DebtDetail = () => {
     return (
         <Layout>
             <h2>Skulddetaljer</h2>
+            <p>Här ser du detaljerna för din skuld.</p>
             <p>Skuld-ID: {id}</p>
             <p>Skuld: {debt ? debt.name : "Hittades inte"}</p>
         </Layout>
