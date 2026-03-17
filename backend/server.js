@@ -55,7 +55,7 @@ app.post("/register", async (req, res) => {
   }
 })
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   const { email, password } = req.body
 
   if (!email || !password) {
@@ -63,7 +63,24 @@ app.post("/login", (req, res) => {
     return
   }
 
-  res.json({ message: "Inloggning lyckades" })
+  const user = await User.findOne({ email })
+
+  if (!user) {
+    res.status(404).json({ message: "Användaren finns inte" })
+    return
+  }
+  if (user.password !== password) {
+    res.status(401).json({ message: "Fel lösenord" })
+    return
+  }
+  res.json({
+    message: "Inloggning lyckades",
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    },
+  })
 })
 
 // Start the server
