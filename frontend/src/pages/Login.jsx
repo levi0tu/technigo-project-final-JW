@@ -10,6 +10,7 @@ export const Login = () => {
     const navigate = useNavigate()
 
     const [errorMessage, setErrorMessage] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const [formData, setFormData] = useState({
         email: "",
@@ -18,8 +19,10 @@ export const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         setErrorMessage("")
+        setIsLoading(true)
 
         const data = await loginUser(formData)
+        setIsLoading(false)
         setErrorMessage(data.message)
 
         if (data.user) {
@@ -62,7 +65,9 @@ export const Login = () => {
                     required
                     autoComplete="current-password"
                 />
-                <button>Logga in</button>
+                <button disabled={isLoading}>
+                    {isLoading ? "Loggar in..." : "Logga in"}
+                </button>
             </form>
             {errorMessage && <p>{errorMessage}</p>}
         </Layout>
