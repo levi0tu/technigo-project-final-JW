@@ -2,20 +2,30 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
+import { loginUser } from "../services/auth"
 
 
 export const Login = () => {
     const { setIsLoggedIn } = useContext(AuthContext)
     const navigate = useNavigate()
 
+    const [errorMessage, setErrorMessage] = useState("")
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     })
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        setIsLoggedIn(true)
-        navigate("/dashboard")
+        setErrorMessage("")
+
+        const data = await loginUser(formData)
+        setErrorMessage(data.message)
+
+        if (data.user) {
+            setIsLoggedIn(true)
+            navigate("/dashboard")
+        }
     }
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -24,6 +34,7 @@ export const Login = () => {
             [name]: value,
         })
     }
+
 
     return (
         <Layout>
@@ -52,6 +63,7 @@ export const Login = () => {
                 />
                 <button>Logga in</button>
             </form>
+            {errorMessage && <p>{errorMessage}</p>}
         </Layout>
     )
 }
