@@ -3,6 +3,7 @@ import cors from "cors"
 import mongoose from "mongoose"
 import { User } from "./models/User.js"
 import { Debt } from "./models/Debt.js"
+import { Payment } from "./models/Payment.js"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl)
@@ -118,6 +119,24 @@ app.get("/debts", async (req, res) => {
 app.get("/debts/:id", async (req, res) => {
   const debt = await Debt.findById(req.params.id)
   res.json(debt)
+})
+
+app.post("/payments", async (req, res) => {
+  const { debtId, amount, paymentDate } = req.body
+
+  if (!debtId || !amount || !paymentDate) {
+    res.status(400).json({ message: "Alla betalningsfält måste fyllas i" })
+    return
+  }
+  const newPayment = new Payment({
+    debtId,
+    amount,
+    paymentDate
+  })
+
+  await newPayment.save()
+
+  res.status(201).json(newPayment)
 })
 
 // Start the server
