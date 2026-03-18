@@ -2,16 +2,22 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { getDebtById } from "../services/debtService"
+import { getPaymentsByDebtId } from "../services/paymentService"
 
 export const DebtDetail = () => {
     const { id } = useParams()
     const [debt, setDebt] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [payments, setPayments] = useState([])
 
     useEffect(() => {
         const fetchDebt = async () => {
             const data = await getDebtById(id)
             setDebt(data)
+
+            const paymentData = await getPaymentsByDebtId(id)
+            setPayments(paymentData)
+
             setIsLoading(false)
         }
 
@@ -35,6 +41,14 @@ export const DebtDetail = () => {
             ) : (
                 <p>Skulden kunde inte hittas.</p>
             )}
+
+            <h3>Betalningar</h3>
+            {payments.map((payment) => (
+                <div key={payment._id}>
+                    <p>Belopp: {payment.amount} kr</p>
+                    <p>Datum: {payment.paymentDate}</p>
+                </div>
+            ))}
         </Layout>
     )
 }

@@ -139,6 +139,11 @@ app.post("/payments", async (req, res) => {
   res.status(201).json(newPayment)
 })
 
+app.get("/payments/:debtId", async (req, res) => {
+  const payments = await Payment.find({ debtId: req.params.debtId })
+  res.json(payments)
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
