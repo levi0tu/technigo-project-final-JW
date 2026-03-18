@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 
 export const Debts = () => {
+
     const debts = [
         { id: 1, name: "Mobil" },
         { id: 2, name: "Jeans" },

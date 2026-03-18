@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
 import { User } from "./models/User.js"
+import { Debt } from "./models/Debt.js"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl)
@@ -82,10 +83,33 @@ app.post("/login", async (req, res) => {
     },
   })
 })
-app.get("/users", async (req, res) => {
-  const users = await User.find()
-  res.json(users)
+
+app.post("/debts", async (req, res) => {
+  const { userId, name, totalAmount, monthlyPayment, interestRate } = req.body
+
+  if (!name || !totalAmount || !monthlyPayment || !interestRate) {
+    res.status(404).json({ message: "Alla fält måste fyllas i" })
+    return
+  }
+
+  const newDebt = new Debt({
+    userId,
+    name,
+    totalAmount,
+    monthlyPayment,
+    interestRate,
+  })
+
+  await newDebt.save()
+
+  res.status(201).json(newDebt)
 })
+
+app.get("/debts", async (req, res) => {
+  const debts = await Debt.find()
+  res.json(debts)
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
