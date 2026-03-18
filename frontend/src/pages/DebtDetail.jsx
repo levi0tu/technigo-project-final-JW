@@ -1,15 +1,20 @@
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout"
+import { getDebtById } from "../services/debtService"
 
 export const DebtDetail = () => {
     const { id } = useParams()
+    const [debt, setDebt] = useState(null)
 
-    const debts = [
-        { id: "1", name: "Mobil" },
-        { id: "2", name: "Jeans" },
-    ]
+    useEffect(() => {
+        const fetchDebt = async () => {
+            const data = await getDebtById(id)
+            setDebt(data)
+        }
 
-    const debt = debts.find((item) => item.id === id)
+        fetchDebt()
+    }, [id])
 
     return (
         <Layout>

@@ -110,6 +110,11 @@ app.get("/debts", async (req, res) => {
   res.json(debts)
 })
 
+app.get("/debts/:id", async (req, res) => {
+  const debt = await Debt.findById(req.params.id)
+  res.json(debt)
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
