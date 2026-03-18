@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import { User } from "./models/User.js"
 import { Debt } from "./models/Debt.js"
 import { Payment } from "./models/Payment.js"
+import { Lesson } from "./models/Lesson.js"
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl)
@@ -152,6 +153,23 @@ app.get("/dashboard", async (req, res) => {
     debtCount,
     paymentCount,
   })
+})
+
+app.get("/lessons", async (req, res) => {
+  const lessons = await Lesson.find()
+  res.json(lessons)
+})
+
+app.post("/lessons", async (req, res) => {
+  const { title, content } = req.body
+  const newLesson = new Lesson({
+    title,
+    content,
+  })
+
+  await newLesson.save()
+
+  res.status(201).json(newLesson)
 })
 
 // Start the server
