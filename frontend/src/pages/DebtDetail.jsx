@@ -43,12 +43,16 @@ export const DebtDetail = () => {
             )}
 
             <h3>Betalningar</h3>
-            {payments.map((payment) => (
-                <div key={payment._id}>
-                    <p>Belopp: {payment.amount} kr</p>
-                    <p>Datum: {payment.paymentDate}</p>
-                </div>
-            ))}
+            {payments.length === 0 ? (
+                <p>Inga registrerade betalningar</p>
+            ) : (
+                payments.map((payment) => (
+                    <div key={payment._id}>
+                        <p>Belopp: {payment.amount} kr</p>
+                        <p>Datum: {payment.paymentDate}</p>
+                    </div>
+                ))
+            )}
         </Layout>
     )
 }
