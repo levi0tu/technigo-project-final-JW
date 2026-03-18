@@ -4,7 +4,7 @@ import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 
 export const Dashboard = () => {
-    const { setIsLoggedIn } = useContext(AuthContext)
+    const { user, setIsLoggedIn } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -16,6 +16,7 @@ export const Dashboard = () => {
         <Layout>
             <h2>Översikt</h2>
             <p>Här ser du snabbt hur läget ser ut just nu.</p>
+            <p>Välkommen {user?.name}</p>
             <p>Du har 2 aktiva skulder just nu</p>
             <button onClick={handleLogout}>Logga ut</button>
         </Layout>

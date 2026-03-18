@@ -6,7 +6,7 @@ import { loginUser } from "../services/auth"
 
 
 export const Login = () => {
-    const { setIsLoggedIn } = useContext(AuthContext)
+    const { setIsLoggedIn, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const [errorMessage, setErrorMessage] = useState("")
@@ -24,6 +24,7 @@ export const Login = () => {
 
         if (data.user) {
             setIsLoggedIn(true)
+            setUser(data.user)
             navigate("/dashboard")
         }
     }
