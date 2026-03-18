@@ -82,7 +82,10 @@ app.post("/login", async (req, res) => {
     },
   })
 })
-
+app.get("/users", async (req, res) => {
+  const users = await User.find()
+  res.json(users)
+})
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
