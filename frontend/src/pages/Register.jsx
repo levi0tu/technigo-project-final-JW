@@ -20,11 +20,13 @@ export const Register = () => {
         setIsLoading(false)
 
         setMessage(data.message)
-        setFormData({
-            name: "",
-            email: "",
-            password: "",
-        })
+        if (data.user) {
+            setFormData({
+                name: "",
+                email: "",
+                password: "",
+            })
+        }
 
     }
     const handleChange = (event) => {
