@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../components/Layout"
+import { registerUser } from "../services/auth"
 
 export const Register = () => {
     const [formData, setFormData] = useState({
@@ -8,9 +9,11 @@ export const Register = () => {
         email: "",
         password: "",
     })
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        alert("Konto skapat")
+        const data = await registerUser(formData)
+
+        alert(data.message)
         setFormData({
             name: "",
             email: "",
