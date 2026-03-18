@@ -2,26 +2,29 @@ import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
-import { AuthContext, user } from "../context/AuthContext"
+import { AuthContext } from "../context/AuthContext"
 
 
 
 export const Debts = () => {
     const [debts, setDebts] = useState([])
     const { user } = useContext(AuthContext)
+    const [isLoading, setIsLoading] = useState(true)
     const [formData, setFormData] = useState({
         name: "",
         totalAmount: "",
         monthlyPayment: "",
-        insterestRate: "",
+        interestRate: "",
     })
 
     useEffect(() => {
         if (!user) return
 
         const fetchDebts = async () => {
+            setIsLoading(true)
             const data = await getDebts(user.id)
             setDebts(data)
+            setIsLoading(false)
         }
         fetchDebts()
     }, [user])
@@ -95,7 +98,9 @@ export const Debts = () => {
                 <button>Lägg till skuld</button>
             </form>
             <h3>Dina skulder</h3>
-            {debts.length === 0 ? (
+            {isLoading ? (
+                <p>Laddar skulder...</p>
+            ) : debts.length === 0 ? (
                 <p>Du har inga skulder. Yay!</p>
             ) : (
                 debts.map((debt) => (
