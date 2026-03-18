@@ -9,11 +9,14 @@ export const Register = () => {
         email: "",
         password: "",
     })
+    const [message, setMessage] = useState("")
+
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setMessage("")
         const data = await registerUser(formData)
 
-        alert(data.message)
+        setMessage(data.message)
         setFormData({
             name: "",
             email: "",
@@ -66,7 +69,7 @@ export const Register = () => {
                 />
                 <button>Skapa konto</button>
             </form>
-
+            {message && <p>{message}</p>}
         </Layout>
     )
 }
