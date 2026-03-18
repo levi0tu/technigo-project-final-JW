@@ -144,6 +144,16 @@ app.get("/payments/:debtId", async (req, res) => {
   res.json(payments)
 })
 
+app.get("/dashboard", async (req, res) => {
+  const debtCount = await Debt.countDocuments()
+  const paymentCount = await Payment.countDocuments()
+
+  res.json({
+    debtCount,
+    paymentCount,
+  })
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
