@@ -10,11 +10,14 @@ export const Register = () => {
         password: "",
     })
     const [message, setMessage] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         setMessage("")
+        setIsLoading(true)
         const data = await registerUser(formData)
+        setIsLoading(false)
 
         setMessage(data.message)
         setFormData({
@@ -67,7 +70,9 @@ export const Register = () => {
                     required
                     autoComplete="new-password"
                 />
-                <button>Skapa konto</button>
+                <button disabled={isLoading}>
+                    {isLoading ? "Skapar konto..." : "Skapa konto"}
+                </button>
             </form>
             {message && <p>{message}</p>}
         </Layout>
