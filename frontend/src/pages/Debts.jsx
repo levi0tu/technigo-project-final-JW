@@ -55,6 +55,7 @@ export const Debts = () => {
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                 />
                 <label htmlFor="totalAmount">Totalt belopp</label>
                 <input
@@ -63,6 +64,7 @@ export const Debts = () => {
                     type="number"
                     value={formData.totalAmount}
                     onChange={handleChange}
+                    required
                 />
                 <label htmlFor="monthlyPayment">Månadsbetalning</label>
                 <input
@@ -71,6 +73,7 @@ export const Debts = () => {
                     type="number"
                     value={formData.monthlyPayment}
                     onChange={handleChange}
+                    required
                 />
                 <label htmlFor="interestRate">Ränta</label>
                 <input
@@ -79,6 +82,7 @@ export const Debts = () => {
                     type="number"
                     value={formData.interestRate}
                     onChange={handleChange}
+                    required
                 />
                 <button>Lägg till skuld</button>
             </form>
