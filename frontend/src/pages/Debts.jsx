@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
+import { AuthContext, user } from "../context/AuthContext"
 
 
 
 export const Debts = () => {
     const [debts, setDebts] = useState([])
+    const { user } = useContext(AuthContext)
     const [formData, setFormData] = useState({
         name: "",
         totalAmount: "",
@@ -15,12 +17,14 @@ export const Debts = () => {
     })
 
     useEffect(() => {
+        if (!user) return
+
         const fetchDebts = async () => {
-            const data = await getDebts()
+            const data = await getDebts(user.id)
             setDebts(data)
         }
         fetchDebts()
-    }, [])
+    }, [user])
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -33,7 +37,10 @@ export const Debts = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const data = await createDebt(formData)
+        const data = await createDebt({
+            ...formData,
+            userId: user.id,
+        })
         setDebts([...debts, data])
         setFormData({
             name: "",
@@ -47,6 +54,7 @@ export const Debts = () => {
         <Layout>
             <h2>Mina skulder</h2>
             <p>Här ser du alla dina skulder på ett ställe</p>
+            <h3>Lägg till en ny skuld</h3>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Skuld</label>
                 <input
@@ -86,11 +94,16 @@ export const Debts = () => {
                 />
                 <button>Lägg till skuld</button>
             </form>
-            {debts.map((debt) => (
-                <div key={debt._id}>
-                    <Link to={`/debts/${debt._id}`}>{debt.name}</Link>
-                </div>
-            ))}
+            <h3>Dina skulder</h3>
+            {debts.length === 0 ? (
+                <p>Du har inga skulder. Yay!</p>
+            ) : (
+                debts.map((debt) => (
+                    <div key={debt._id}>
+                        <Link to={`/debts/${debt._id}`}>{debt.name}</Link>
+                    </div>
+                ))
+            )}
         </Layout>
     )
 }

@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:8080"
 
-export const getDebts = async () => {
-    const response = await fetch(`${BASE_URL}/debts`)
+export const getDebts = async (userId) => {
+    const response = await fetch(`${BASE_URL}/debts?userId=${userId}`)
     const data = await response.json()
     return data
 }

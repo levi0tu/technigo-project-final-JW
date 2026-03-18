@@ -106,7 +106,12 @@ app.post("/debts", async (req, res) => {
 })
 
 app.get("/debts", async (req, res) => {
-  const debts = await Debt.find()
+  const { userId } = req.query
+
+  const debts = userId
+    ? await Debt.find({ userId })
+    : await Debt.find()
+
   res.json(debts)
 })
 
