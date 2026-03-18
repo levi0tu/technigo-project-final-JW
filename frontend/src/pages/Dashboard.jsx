@@ -4,11 +4,12 @@ import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 
 export const Dashboard = () => {
-    const { user, setIsLoggedIn } = useContext(AuthContext)
+    const { user, setUser, setIsLoggedIn } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
         setIsLoggedIn(false)
+        setUser(null)
         navigate("/login")
     }
 
