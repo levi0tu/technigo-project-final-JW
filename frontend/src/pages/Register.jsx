@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { registerUser } from "../services/auth"
 
@@ -77,6 +78,9 @@ export const Register = () => {
                 </button>
             </form>
             {message && <p>{message}</p>}
+            <div className="auth-link">
+                <Link to="/login">Har du redan ett konto? Klicka här för att logga in.</Link>
+            </div>
         </Layout>
     )
 }

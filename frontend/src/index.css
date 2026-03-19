@@ -136,6 +136,11 @@ nav a:hover {
     background: rgba(74, 222, 128, 0.12);
 }
 
+.auth-link {
+    margin-top: 1rem;
+}
+
+
 @media (min-width: 768px) {
     nav {
         flex-direction: row;

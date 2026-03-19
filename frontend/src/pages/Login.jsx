@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 import { loginUser } from "../services/auth"
@@ -70,6 +70,9 @@ export const Login = () => {
                 </button>
             </form>
             {errorMessage && <p>{errorMessage}</p>}
+            <div className="auth-link">
+                <Link to="/register">Har du inget konto än? Klicka här för att skapa ett.</Link>
+            </div>
         </Layout>
     )
 }
