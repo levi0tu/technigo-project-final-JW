@@ -4,8 +4,6 @@ import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
 import { AuthContext } from "../context/AuthContext"
 
-
-
 export const Debts = () => {
     const [debts, setDebts] = useState([])
     const { user } = useContext(AuthContext)
@@ -58,6 +56,7 @@ export const Debts = () => {
             <h2>Mina skulder</h2>
             <p>Här ser du alla dina skulder på ett ställe</p>
             <h3>Lägg till en ny skuld</h3>
+            <p>Fyll i uppgifterna så får du bättre koll direkt.</p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Skuld</label>
                 <input
@@ -96,19 +95,22 @@ export const Debts = () => {
                     required
                 />
                 <button>Lägg till skuld</button>
+
             </form>
-            <h3>Dina skulder</h3>
-            {isLoading ? (
-                <p>Laddar skulder...</p>
-            ) : debts.length === 0 ? (
-                <p>Du har inga skulder. Yay!</p>
-            ) : (
-                debts.map((debt) => (
-                    <div key={debt._id}>
-                        <Link to={`/debts/${debt._id}`}>{debt.name}</Link>
-                    </div>
-                ))
-            )}
+            <div className="debt-list">
+                <h3>Dina skulder</h3>
+                {isLoading ? (
+                    <p>Laddar skulder...</p>
+                ) : debts.length === 0 ? (
+                    <p>Du har inga skulder registrerade än.</p>
+                ) : (
+                    debts.map((debt) => (
+                        <div key={debt._id} className="debt-item">
+                            <Link to={`/debts/${debt._id}`}>{debt.name}</Link>
+                        </div>
+                    ))
+                )}
+            </div>
         </Layout>
     )
 }
