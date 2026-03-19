@@ -76,6 +76,10 @@ button:hover {
     transition: transform 0.2s ease;
 }
 
+form button {
+    margin-top: 0.5rem;
+}
+
 label {
     display: block;
     margin-bottom: 0.35rem;
@@ -152,13 +156,7 @@ nav a:hover {
     margin: 1.5rem 0;
 }
 
-@media (max-width: 480px) {
 
-    header,
-    main {
-        padding: 0.75rem;
-    }
-}
 
 .payments-history {
     margin-top: 2rem;
@@ -187,6 +185,53 @@ nav a:hover {
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+
+.menu-toggle {
+    width: auto;
+    padding: 0.6rem 1rem;
+    background: transparent;
+}
+
+/*Hamburgermeny*/
+.menu-icon {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    background: var(--accent-green);
+    position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1.25rem;
+    height: 2px;
+    background: var(--accent-green);
+}
+
+.menu-icon::before {
+    top: -0.35rem;
+}
+
+.menu-icon::after {
+    top: 0.35rem;
+}
+
+/*Slut på hamburgermeny*/
+
+@media (min-width: 480px) {
+
+    header,
+    main {
+        padding: 0.75rem;
+    }
+
+    .mobile-only {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {
