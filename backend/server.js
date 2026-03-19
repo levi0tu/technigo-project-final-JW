@@ -172,6 +172,21 @@ app.post("/lessons", async (req, res) => {
   res.status(201).json(newLesson)
 })
 
+app.patch("/debts/:id", async (req, res) => {
+  const updatedDebt = await Debt.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  )
+
+  res.json(updatedDebt)
+})
+
+app.delete("/debts/:id", async (req, res) => {
+  await Debt.findByIdAndDelete(req.params.id)
+  res.json({ message: "Skulden har tagits bort" })
+})
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`)
