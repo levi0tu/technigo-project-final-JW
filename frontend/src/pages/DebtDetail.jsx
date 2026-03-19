@@ -2,13 +2,17 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { getDebtById } from "../services/debtService"
-import { getPaymentsByDebtId } from "../services/paymentService"
+import { createPayment, getPaymentsByDebtId } from "../services/paymentService"
 
 export const DebtDetail = () => {
     const { id } = useParams()
     const [debt, setDebt] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [payments, setPayments] = useState([])
+    const [paymentFormData, setPaymentFormData] = useState({
+        amount: "",
+        paymentDate: "",
+    })
 
     useEffect(() => {
         const fetchDebt = async () => {
@@ -23,6 +27,30 @@ export const DebtDetail = () => {
 
         fetchDebt()
     }, [id])
+
+    const handlePaymentChange = (event) => {
+        const { name, value } = event.target
+
+        setPaymentFormData({
+            ...paymentFormData,
+            [name]: value,
+        })
+    }
+
+    const handlePaymentSubmit = async (event) => {
+        event.preventDefault()
+
+        const data = await createPayment({
+            ...paymentFormData,
+            debtId: id,
+        })
+
+        setPayments([...payments, data])
+        setPaymentFormData({
+            amount: "",
+            paymentDate: "",
+        })
+    }
 
     return (
         <Layout>
@@ -41,8 +69,27 @@ export const DebtDetail = () => {
             ) : (
                 <p>Skulden kunde inte hittas.</p>
             )}
+            <form onSubmit={handlePaymentSubmit}>
+                <h3>Betalningar</h3>
+                <label htmlFor="amount">Betalningsbelopp</label>
+                <input
+                    id="amount"
+                    name="amount"
+                    type="number"
+                    value={paymentFormData.amount}
+                    onChange={handlePaymentChange}
+                />
 
-            <h3>Betalningar</h3>
+                <label htmlFor="paymentDate">Betalningsdatum</label>
+                <input
+                    id="paymentDate"
+                    name="paymentDate"
+                    type="date"
+                    value={paymentFormData.paymentDate}
+                    onChange={handlePaymentChange}
+                />
+                <button>Registrera betalning</button>
+            </form>
             {payments.length === 0 ? (
                 <p>Inga registrerade betalningar</p>
             ) : (

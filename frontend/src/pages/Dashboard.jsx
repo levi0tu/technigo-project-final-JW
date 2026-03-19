@@ -9,13 +9,15 @@ export const Dashboard = () => {
     const [dashboardData, setDashboardData] = useState(null)
 
     useEffect(() => {
+        if (!user) return
+
         const fetchDachboardData = async () => {
-            const data = await getDashboardData()
+            const data = await getDashboardData(user.id)
             setDashboardData(data)
         }
 
         fetchDachboardData()
-    }, [])
+    }, [user])
     const navigate = useNavigate()
 
     const handleLogout = () => {
@@ -27,10 +29,12 @@ export const Dashboard = () => {
     return (
         <Layout>
             <h2>Översikt</h2>
-            <p>Här ser du snabbt hur läget ser ut just nu.</p>
+            <p>Här får du snabb koll på läget.</p>
             <p>Välkommen {user?.name}</p>
-            <p>Antal skulder: {dashboardData?.debtCount}</p>
-            <p>Antal betalningar: {dashboardData?.paymentCount}</p>
+            <div className="dashboard-stats">
+                <p>Antal skulder: {dashboardData?.debtCount}</p>
+                <p>Antal betalningar: {dashboardData?.paymentCount}</p>
+            </div>
             <button onClick={handleLogout}>Logga ut</button>
         </Layout>
     )

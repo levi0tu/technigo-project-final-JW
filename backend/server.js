@@ -146,8 +146,11 @@ app.get("/payments/:debtId", async (req, res) => {
 })
 
 app.get("/dashboard", async (req, res) => {
-  const debtCount = await Debt.countDocuments()
-  const paymentCount = await Payment.countDocuments()
+  const { userId } = req.query
+  const debtCount = await Debt.countDocuments({ userId })
+  const userDebts = await Debt.find({ userId })
+  const debtIds = userDebts.map((debt) => debt._id)
+  const paymentCount = await Payment.countDocuments({ debtId: { $in: debtIds } })
 
   res.json({
     debtCount,
