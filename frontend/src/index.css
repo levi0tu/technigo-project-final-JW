@@ -1,0 +1,118 @@
+:root {
+    --bg: #0f1115;
+    --surface: #1f2933;
+    --accent-green: #4ade80;
+    --accent-orange: #fb923c;
+    --text: #f9fafb;
+    --text-muted: #9ca3af;
+    --danger: #f97373;
+    --success: #16a34a;
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+input,
+button {
+    font: inherit;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1rem;
+}
+
+a {
+    color: var(--accent-green);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    width: 100%;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.875rem 1rem;
+    background: var(--accent-green);
+    color: #0f1115;
+    font-weight: 700;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+input {
+    width: 100%;
+    border: 1px solid #2d3741;
+    border-radius: var(--radius);
+    padding: 0, 875rem 1rem;
+    background: var(--surface);
+    color: var(--text);
+    margin-bottom: 0.75rem;
+}
+
+form {
+    display: grid;
+    gap: 0, 75rem;
+}
+
+header,
+main {
+    width: min(100%, 48rem);
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+main {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0, 75rem;
+}
+
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}
