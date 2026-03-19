@@ -177,6 +177,18 @@ nav a:hover {
     margin: 1.5rem 0;
 }
 
+.nav-shell {
+    margin-top: 1rem;
+}
+
+.nav-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
 @media (min-width: 768px) {
     nav {
         flex-direction: row;
