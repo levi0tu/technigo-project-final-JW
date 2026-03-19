@@ -69,8 +69,10 @@ export const DebtDetail = () => {
             ) : (
                 <p>Skulden kunde inte hittas.</p>
             )}
+
+            <h3>Registrera betalning</h3>
             <form onSubmit={handlePaymentSubmit}>
-                <h3>Betalningar</h3>
+
                 <label htmlFor="amount">Betalningsbelopp</label>
                 <input
                     id="amount"
@@ -90,6 +92,9 @@ export const DebtDetail = () => {
                 />
                 <button>Registrera betalning</button>
             </form>
+            <div className="payments-history">
+                <h3>Tidigare betalningar</h3>
+            </div>
             {payments.length === 0 ? (
                 <p>Inga registrerade betalningar</p>
             ) : (
