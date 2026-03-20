@@ -23,36 +23,49 @@ export const Simulator = () => {
 
     return (
         <Layout>
-            <h2>Jämför köp</h2>
-            <p>Jämför köp direkt med delbetalning och se skillnaden</p>
-            <p>Se vad delbetalning faktiskt kostar innan du bestämmer dig.</p>
-            <p>Det här är en enkel jämförelse mellan direktköp och delbetalning.</p>
-            <label htmlFor="cashPrice">Pris vid direktköp</label>
-            <input
-                id="cashPrice"
-                name="cashPrice"
-                type="number"
-                value={formData.cashPrice}
-                onChange={handleChange}
-            />
-            <label htmlFor="monthlyCost">Månadskostnad</label>
-            <input
-                id="monthlyCost"
-                name="monthlyCost"
-                type="number"
-                value={formData.monthlyCost}
-                onChange={handleChange}
-            />
-            <label htmlFor="months">Antal månader</label>
-            <input
-                id="months"
-                name="months"
-                type="number"
-                value={formData.months}
-                onChange={handleChange}
-            />
-            <p>Total kostnad med delbetalning: {installmentTotal} kr</p>
-            <p>Skillnad mot direktköp: {difference}</p>
+            <section className="hero-intro">
+                <h2>Jämför köp</h2>
+                <p>Se den dolda kostnaden med delbetalning</p>
+            </section>
+            <section className="simulator-input-card">
+                <label htmlFor="cashPrice">Pris vid direktköp</label>
+                <input
+                    id="cashPrice"
+                    name="cashPrice"
+                    type="number"
+                    value={formData.cashPrice}
+                    onChange={handleChange}
+                />
+                <label htmlFor="monthlyCost">Månadskostnad</label>
+                <input
+                    id="monthlyCost"
+                    name="monthlyCost"
+                    type="number"
+                    value={formData.monthlyCost}
+                    onChange={handleChange}
+                />
+                <label htmlFor="months">Antal månader</label>
+                <input
+                    id="months"
+                    name="months"
+                    type="number"
+                    value={formData.months}
+                    onChange={handleChange}
+                />
+            </section>
+            <section className="simulator-results">
+                <section className="simulator-result-card pay-now">
+                    <h3>Direktköp</h3>
+                    <p>{formData.cashPrice || 0} kr</p>
+                    <p>0 kr i extra kostnad</p>
+                </section>
+                <section className="simulator-result-card pay-later">
+                    <h3>Delbetalning</h3>
+                    <p>{installmentTotal || 0} kr</p>
+                    <p>{difference || 0} kr i extra kostnad</p>
+                </section>
+            </section>
+
         </Layout>
     )
 }

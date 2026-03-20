@@ -34,7 +34,7 @@ export const Dashboard = () => {
             <section className="dashboard-hero">
                 <p>Din skuldöversikt</p>
                 <p className="dashboard-hero-amount">
-                    {dashboardData?.debtCount} kr
+                    {dashboardData?.totalDebtAmount} kr
                 </p>
                 <div className="dashboard-hero-actions">
                     <Link to="/debts">Lägg till skuld</Link>

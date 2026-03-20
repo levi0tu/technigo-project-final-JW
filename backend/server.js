@@ -151,12 +151,17 @@ app.get("/dashboard", async (req, res) => {
   const { userId } = req.query
   const debtCount = await Debt.countDocuments({ userId })
   const userDebts = await Debt.find({ userId })
+  const totalDebtAmount = userDebts.reduce(
+    (sum, debt) => sum + Number(debt.totalAmount),
+    0
+  )
   const debtIds = userDebts.map((debt) => debt._id)
   const paymentCount = await Payment.countDocuments({ debtId: { $in: debtIds } })
 
   res.json({
     debtCount,
     paymentCount,
+    totalDebtAmount,
   })
 })
 
