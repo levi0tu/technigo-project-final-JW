@@ -234,10 +234,14 @@ nav a:hover {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 760px) {
     nav {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
+    }
+
+    nav a {
+        padding: 0.25rem 0.5rem;
     }
 }

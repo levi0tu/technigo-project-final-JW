@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../context/AuthContext"
 
 export const Layout = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const { isLoggedIn } = useContext(AuthContext)
+
     const shouldShowMenu = isMenuOpen || window.innerWidth >= 480
 
     return (
@@ -19,13 +22,15 @@ export const Layout = ({ children }) => {
                     </button>
                     {shouldShowMenu && (
                         <nav>
-                            <Link to="/">Hem</Link>
-                            <Link to="/login">Logga in</Link>
-                            <Link to="/register">Skapa konto</Link>
+                            {!isLoggedIn && <Link to="/">Hem</Link>}
+                            {isLoggedIn && <Link to="/dashboard">Översikt</Link>}
+                            {isLoggedIn && <Link to="/debts">Mina skulder</Link>}
                             <Link to="/simulator">Jämför köp</Link>
                             <Link to="/learn">Guider</Link>
-                            <Link to="/dashboard">Översikt</Link>
-                            <Link to="/debts">Mina skulder</Link>
+                            {!isLoggedIn && <Link to="/login">Logga in</Link>}
+                            {!isLoggedIn && <Link to="/register">Skapa konto</Link>}
+
+
 
                         </nav>
                     )}
