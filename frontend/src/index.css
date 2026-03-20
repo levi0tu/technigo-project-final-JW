@@ -222,6 +222,52 @@ nav a:hover {
 
 /*Slut på hamburgermeny*/
 
+.dashboard-hero {
+    background: linear-gradient(180deg, #176b52 0%, #125340 100%);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-hero p {
+    margin: 0;
+}
+
+.dashboard-hero-amount {
+    margin-top: 0.75rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.dashboard-hero-actions {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.dashboard-hero-actions a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.2;
+}
+
+.dashboard-hero-actions a:first-child {
+    background: #9ee8c8;
+    color: #0f1115;
+}
+
+.dashboard-hero-actions a:last-child {
+    background: rgba(0, 0, 0, 0.18);
+    color: var(--text);
+}
+
+
 @media (min-width: 480px) {
 
     header,
@@ -231,6 +277,14 @@ nav a:hover {
 
     .mobile-only {
         display: none;
+    }
+
+    .dashboard-hero-actions {
+        grid-template-columns: repeat(2, max-content);
+    }
+
+    .dashboard-hero-actions a {
+        padding: 1rem;
     }
 }
 

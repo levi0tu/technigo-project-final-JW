@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 import { getDashboardData } from "../services/dashboardService"
@@ -30,7 +30,17 @@ export const Dashboard = () => {
         <Layout>
             <h2>Översikt</h2>
             <p>Här får du snabb koll på läget.</p>
-            <p>Välkommen {user?.name}</p>
+            <p>Hej {user?.name}</p>
+            <section className="dashboard-hero">
+                <p>Din skuldöversikt</p>
+                <p className="dashboard-hero-amount">
+                    {dashboardData?.debtCount} kr
+                </p>
+                <div className="dashboard-hero-actions">
+                    <Link to="/debts">Lägg till skuld</Link>
+                    <Link to="/debts">Visa skulder</Link>
+                </div>
+            </section>
             <div className="dashboard-stats">
                 <div className="stat-card">
                     <p>Antal skulder: {dashboardData?.debtCount}</p>
