@@ -297,6 +297,22 @@ nav a:hover {
     margin-bottom: 2rem;
 }
 
+
+.interest-rate-group {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.interest-rate-value {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+input[type="range"] {
+    margin-bottom: 0.5rem;
+}
+
 .simulator-badge {
     display: inline-flex;
     margin: 0 0 0.75rem;
@@ -324,12 +340,6 @@ nav a:hover {
 .simulator-result-meta {
     margin: 0.5rem 0 0;
     color: var(--text-muted);
-}
-
-.simulator-result-label {
-    margin: 0.75rem 0 0;
-    color: var(--text-muted);
-    font-size: 0.875rem;
 }
 
 .pay-later .simulator-result-meta {
@@ -390,6 +400,9 @@ nav a:hover {
     color: #f4b6a8;
 }
 
+.simulator-result-meta {
+    padding-bottom: 1rem;
+}
 
 @media (min-width: 480px) {
 
