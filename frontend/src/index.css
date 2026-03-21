@@ -8,6 +8,12 @@
     --danger: #f97373;
     --success: #16a34a;
     --radius: 12px;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.06);
+    --card-highlight: rgba(74, 222, 128, 0.12);
+    --card-accent-bg: linear-gradient(180deg, #176b52 0%, #125340 100%);
+
+
 }
 
 * {
@@ -66,9 +72,8 @@ button {
     border-radius: var(--radius);
     padding: 0.875rem 1rem;
     background: var(--accent-green);
-    color: #0f1115;
+    color: var(--bg);
     font-weight: 700;
-
 }
 
 button:hover {
@@ -99,7 +104,7 @@ input {
 input:focus {
     outline: none;
     border-color: var(--accent-green);
-    box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+    box-shadow: 0 0 0 3px var(--card-highlight);
 }
 
 form {
@@ -137,7 +142,7 @@ nav a {
 }
 
 nav a:hover {
-    background: rgba(74, 222, 128, 0.12);
+    background: var(--card-highlight);
 }
 
 .auth-link {
@@ -156,15 +161,13 @@ nav a:hover {
     margin: 1.5rem 0;
 }
 
-
-
 .payments-history {
     margin-top: 2rem;
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius);
     padding: 1rem;
 }
@@ -223,7 +226,7 @@ nav a:hover {
 /*Slut på hamburgermeny*/
 
 .dashboard-hero {
-    background: linear-gradient(180deg, #176b52 0%, #125340 100%);
+    background: var(--card-accent-bg);
     border-radius: var(--radius);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -268,14 +271,16 @@ nav a:hover {
 }
 
 .simulator-result-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius);
     padding: 1rem;
 }
 
-.pay-now {
-    background: rgba(74, 222, 128, 0.12);
+
+
+.simulator-status {
+    margin-top: 0.75rem;
 }
 
 .simulator-results {
@@ -285,11 +290,106 @@ nav a:hover {
 }
 
 .simulator-input-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius);
     padding: 1rem;
+    margin-bottom: 2rem;
 }
+
+.simulator-badge {
+    display: inline-flex;
+    margin: 0 0 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: var(--card-highlight);
+    color: var(--accent-green);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.simulator-badge--muted {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+}
+
+.simulator-result-amount {
+    margin: 0.5rem 0 0;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text);
+}
+
+.simulator-result-meta {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted);
+}
+
+.simulator-result-label {
+    margin: 0.75rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.pay-later .simulator-result-meta {
+    color: #f4b6a8;
+}
+
+.simulator-impact-card {
+    background: var(--card-accent-bg);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-top: 1rem;
+}
+
+.simulator-impact-label {
+    margin: 0;
+    color: rgba(249, 250, 251, 0.8);
+}
+
+.simulator-impact-value {
+    margin: 0.75rem 0 0;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.simulator-impact-text {
+    margin: 0.75rem 0 0;
+    color: rgba(249, 250, 251, 0.85);
+}
+
+.simulator-result-card h3 {
+    margin: 0;
+}
+
+.simulator-result-card p {
+    margin-left: 0;
+}
+
+.pay-later {
+    background: var(--card-bg);
+}
+
+.pay-now {
+    background: var(--card-highlight);
+}
+
+.simulator-status {
+    margin: 1rem 0 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.simulator-status--good {
+    color: var(--accent-green);
+}
+
+.simulator-status--warning {
+    color: #f4b6a8;
+}
+
 
 @media (min-width: 480px) {
 
@@ -320,5 +420,9 @@ nav a:hover {
 
     nav a {
         padding: 0.25rem 0.5rem;
+    }
+
+    .simulator-results {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
