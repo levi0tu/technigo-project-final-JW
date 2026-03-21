@@ -59,7 +59,7 @@ export const Simulator = () => {
                 <p>Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
             </section>
             <section className="simulator-input-card">
-                <label htmlFor="cashPrice">Pris vid direktköp</label>
+                <label htmlFor="cashPrice">Varans pris</label>
                 <input
                     id="cashPrice"
                     name="cashPrice"
