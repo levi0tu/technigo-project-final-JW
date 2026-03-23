@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { getDebtById } from "../services/debtService"
 import { createPayment, getPaymentsByDebtId } from "../services/paymentService"
@@ -54,6 +54,7 @@ export const DebtDetail = () => {
 
     return (
         <Layout>
+            <Link className="back-link" to="/debts">← Tillbaka till Mina skulder</Link>
             <h2>Skulddetaljer</h2>
             <p>Här ser du detaljerna för din skuld.</p>
             <p>Skuld-ID: {id}</p>

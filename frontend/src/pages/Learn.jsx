@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { getLessons } from "../services/lessonService"
 
@@ -15,6 +16,7 @@ export const Learn = () => {
     }, [])
     return (
         <Layout>
+            <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
             <h2>Guider</h2>
             <p>Få bättre koll på ränta, krediter och avbetalningar.</p>
             {lessons.map((lesson) => (

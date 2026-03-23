@@ -149,6 +149,18 @@ nav a:hover {
     margin-top: 1rem;
 }
 
+.back-link {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.back-link:hover {
+    color: var(--text);
+    text-decoration: none;
+}
+
 /*Debts page*/
 .debt-item+.debt-item {
     margin-top: 0.75rem;
@@ -331,7 +343,6 @@ nav a:hover {
     top: 0.35rem;
 }
 
-/*Slut på hamburgermeny*/
 
 .dashboard-hero {
     background: var(--card-accent-bg);

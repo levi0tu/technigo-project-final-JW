@@ -54,6 +54,7 @@ export const Debts = () => {
 
     return (
         <Layout>
+            <Link className="back-link" to="/dashboard">← Tillbaka till Översikt</Link>
             <h2>Mina skulder</h2>
             <div className="debt-list">
                 <section className="debts-summary-card">

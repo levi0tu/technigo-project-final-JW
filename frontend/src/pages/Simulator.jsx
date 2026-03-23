@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { formatCurrency } from "../utility/formatCurrency.js"
 
@@ -53,6 +54,7 @@ export const Simulator = () => {
     return (
         <Layout>
             <section className="hero-intro">
+                <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
                 <h2>Jämför köp</h2>
                 <p>Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
             </section>

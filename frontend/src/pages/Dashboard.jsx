@@ -30,8 +30,9 @@ export const Dashboard = () => {
     return (
         <Layout>
             <h2>Översikt</h2>
-            <p>Här får du snabb koll på läget.</p>
+
             <p>Hej {user?.name}</p>
+            <p>Här får du snabb koll på läget.</p>
             <section className="dashboard-hero">
                 <p>Din skuldöversikt</p>
                 <p className="dashboard-hero-amount">
