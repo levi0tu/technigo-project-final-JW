@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 import { getDashboardData } from "../services/dashboardService"
+import { formatCurrency } from "../utility/formatCurrency.js"
 
 export const Dashboard = () => {
     const { user, setUser, setIsLoggedIn } = useContext(AuthContext)
@@ -34,7 +35,7 @@ export const Dashboard = () => {
             <section className="dashboard-hero">
                 <p>Din skuldöversikt</p>
                 <p className="dashboard-hero-amount">
-                    {dashboardData?.totalDebtAmount} kr
+                    {formatCurrency(dashboardData?.totalDebtAmount)} kr
                 </p>
                 <div className="dashboard-hero-actions">
                     <Link to="/debts">Lägg till skuld</Link>
