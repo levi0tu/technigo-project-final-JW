@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../components/Layout"
+import { formatCurrency } from "../utility/formatCurrency.js"
 
 export const Simulator = () => {
     const [formData, setFormData] = useState({
@@ -43,9 +44,6 @@ export const Simulator = () => {
                 : "Fyll i fler uppgifter"
 
     const difference = installmentTotal - cashPrice
-
-    const formatCurrency = (value) =>
-        new Intl.NumberFormat("sv-SE").format(Number(value) || 0)
 
     const errorMessage =
         installmentTotal > 0 && difference < 0

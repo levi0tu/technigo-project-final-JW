@@ -116,7 +116,21 @@ app.get("/debts", async (req, res) => {
     ? await Debt.find({ userId })
     : await Debt.find()
 
-  res.json(debts)
+  const debtsWithPayments = await Promise.all(
+    debts.map(async (debt) => {
+      const payments = await Payment.find({ debtId: debt._id })
+      const paidAmount = payments.reduce(
+        (sum, payment) => sum + Number(payment.amount),
+        0
+      )
+
+      return {
+        ...debt.toObject(),
+        paidAmount,
+      }
+    })
+  )
+  res.json(debtsWithPayments)
 })
 
 app.get("/debts/:id", async (req, res) => {

@@ -1,12 +1,28 @@
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
 
 export const Layout = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isDesktopMenu, setIsDesktopMenu] = useState(window.innerWidth >= 480)
     const { isLoggedIn } = useContext(AuthContext)
+    const shouldShowMenu = isMenuOpen || isDesktopMenu
 
-    const shouldShowMenu = isMenuOpen || window.innerWidth >= 480
+    useEffect(() => {
+        const syncMenuMode = () => {
+            const isDesktop = window.innerWidth >= 480
+            setIsDesktopMenu(isDesktop)
+
+            if (isDesktop) {
+                setIsMenuOpen(false)
+            }
+        }
+
+        syncMenuMode()
+        window.addEventListener("resize", syncMenuMode)
+
+        return () => window.removeEventListener("resize", syncMenuMode)
+    }, [])
 
     return (
         <div>
