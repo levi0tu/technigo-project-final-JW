@@ -161,6 +161,113 @@ nav a:hover {
     text-decoration: none;
 }
 
+/*Home*/
+.home-hero {
+    margin-bottom: 2rem;
+}
+
+.home-hero h2 {
+    margin: 0;
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 7vw, 3.5rem);
+    line-height: 0.95;
+}
+
+.home-lead {
+    max-width: 30ch;
+    margin: 1rem 0 0;
+    color: var(--text-muted);
+}
+
+.home-hero-actions {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.home-primary-action,
+.home-secondary-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3rem;
+    padding: 0.85rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+.home-primary-action {
+    background: #9ee8c8;
+    color: #0f1115;
+}
+
+.home-secondary-action {
+    color: var(--text);
+}
+
+.home-value-section {
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    background: rgba(158, 232, 200, 0.08);
+    border-radius: var(--radius);
+}
+
+.home-value-section h3 {
+    margin-bottom: 0.75rem;
+}
+
+.home-value-section>p {
+    color: var(--text-muted);
+}
+
+.home-value-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.home-value-card {
+    background: #f5f1ec;
+    border-radius: var(--radius);
+    padding: 1rem;
+    color: #0f1115;
+}
+
+.home-value-card h4 {
+    margin: 0;
+}
+
+.home-value-card p {
+    margin-bottom: 0;
+    color: rgba(15, 17, 21, 0.75);
+}
+
+.home-cta-card {
+    padding: 1.25rem;
+    background: var(--card-accent-bg);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+.home-cta-card h3 {
+    margin-bottom: 0.75rem;
+}
+
+.home-cta-card p {
+    margin-bottom: 1rem;
+    color: rgba(249, 250, 251, 0.85);
+}
+
+.home-cta-card p,
+.home-cta-card .home-primary-action {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*Debts page*/
 .debt-item+.debt-item {
     margin-top: 0.75rem;
@@ -389,14 +496,13 @@ nav a:hover {
     color: var(--text);
 }
 
+/*Simulator*/
 .simulator-result-card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
     padding: 1rem;
 }
-
-
 
 .simulator-status {
     margin-top: 0.75rem;
@@ -523,6 +629,121 @@ input[type="range"] {
     padding-bottom: 1rem;
 }
 
+/*Money School*/
+.learn-hero {
+    margin-bottom: 1.5rem;
+}
+
+.learn-hero p:last-child {
+    max-width: 34ch;
+    color: var(--text-muted);
+    line-height: 1.2rem;
+}
+
+.learn-kicker {
+    margin: 0 0 0.5rem;
+    color: var(--accent-green);
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.learn-level-card,
+.learn-featured-card,
+.learn-insight-card,
+.learn-locked-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.learn-level-card {
+    margin-bottom: 1rem;
+}
+
+.learn-level-header,
+.learn-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.learn-level-label,
+.learn-level-progress,
+.learn-section-header p,
+.learn-card-tag {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.learn-progress-bar {
+    width: 100%;
+    height: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.learn-progress-fill {
+    width: 62%;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--accent-green);
+}
+
+.learn-featured-card {
+    margin: 1rem 0;
+    background: linear-gradient(180deg, #e0b75f 0%, #9f7340 100%);
+    border: none;
+    color: var(--bg);
+}
+
+.learn-featured-card h3,
+.learn-featured-card p {
+    color: var(--bg);
+}
+
+.learn-featured-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--bg);
+    font-weight: 600;
+}
+
+.learn-insight-card {
+    margin-bottom: 1.5rem;
+    background: var(--card-accent-bg);
+}
+
+.learn-locked-section {
+    margin-bottom: 1.5rem;
+}
+
+.learn-locked-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.learn-locked-card {
+    opacity: 0.7;
+}
+
+.learn-locked-card h4 {
+    margin: 0;
+}
+
+.learn-locked-card p {
+    margin-bottom: 0;
+}
 
 @media (min-width: 480px) {
 
