@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { LuWallet } from "react-icons/lu";
 import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
 import { AuthContext } from "../context/AuthContext"
@@ -55,7 +56,8 @@ export const Debts = () => {
     return (
         <Layout>
             <Link className="back-link" to="/dashboard">← Tillbaka till Översikt</Link>
-            <h2>Mina skulder</h2>
+            <h2><LuWallet /> Mina skulder</h2>
+
             <div className="debt-list">
                 <section className="debts-summary-card">
                     <p className="debts-summary-label">Totalt att betala</p>

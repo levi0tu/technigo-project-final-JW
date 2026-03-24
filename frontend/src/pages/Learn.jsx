@@ -51,8 +51,7 @@ export const Learn = () => {
             )}
             <section className="learn-insight-card">
                 <p className="learn-card-tag">Dagens insikt</p>
-                <p>
-                    Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
+                <p>Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
                     så behåller du kontrollen.
                 </p>
             </section>

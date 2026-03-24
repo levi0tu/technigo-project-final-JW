@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../context/AuthContext"
+import { GiFlowerEmblem } from "react-icons/gi"
+
 
 export const Layout = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,7 +29,7 @@ export const Layout = ({ children }) => {
     return (
         <div>
             <header>
-                <h1>Växla Upp</h1>
+                <h1><GiFlowerEmblem /> Växla Upp</h1>
                 <div className="nav-shell">
                     <p className="nav-label mobile-only">Meny</p>
                     <button
@@ -45,9 +47,6 @@ export const Layout = ({ children }) => {
                             <Link to="/learn">Guider</Link>
                             {!isLoggedIn && <Link to="/login">Logga in</Link>}
                             {!isLoggedIn && <Link to="/register">Skapa konto</Link>}
-
-
-
                         </nav>
                     )}
                 </div>

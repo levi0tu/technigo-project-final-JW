@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
+import featuredImage from "../images/pexels-serhii-barkanov-2144469453-35382218.jpg"
+
 
 export const Home = () => {
     return (
         <Layout>
             <section className="home-hero">
-                <h2>Växla Upp</h2>
-                <p>Äg dina pengar – låt inte dina pengar äga dig.</p>
+                <p className="home-kicker">• Framtidens ekonomi</p>
+                <h2 className="home-hero-title">Äg dina pengar,
+                    <span> innan pengarna äger dig.</span>
+                </h2>
                 <p className="home-lead">
-                    Ta kontroll över din ekonomi med smarta verktyg för skulder,
-                    ränta och bättre beslut i vardagen.
+                    Vi hjälper dig att bryta cirkeln av osynliga skulder och räntefällor.
+                    Ta kontroll över din ekonomi med smarta verktyg för bättre kontroll i vardagen.
                 </p>
                 <div className="home-hero-actions">
                     <Link className="home-primary-action" to="/register">
@@ -17,6 +21,16 @@ export const Home = () => {
                     </Link>
                     <Link className="home-secondary-action" to="/simulator">
                         Se hur det funkar
+                    </Link>
+                </div>
+            </section>
+            <section className="home-featured-card">
+                <img src={featuredImage} alt="plant growing" className="home-featured-image" />
+                <div className="home-featured-overlay">
+                    <h2>Ränta, hur påverkar den ditt köp?</h2>
+                    <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
+                    <Link className="home-primary-action" to="/learn">
+                        Lär dig mer
                     </Link>
                 </div>
             </section>
