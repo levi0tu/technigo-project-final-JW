@@ -17,7 +17,7 @@
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.06);
     --card-highlight: rgba(74, 222, 128, 0.12);
-    --card-accent-bg-green: linear-gradient(180deg, #00995e 0%, #125340 100%);
+    --card-accent-bg-green: linear-gradient(180deg, #00ff9d 0%, #125340 100%);
     --card-accent-bg-purple: linear-gradient(180deg, #6000dd 0%, #4500a0 100%);
     --card-accent-bg-blue: linear-gradient(180deg, #0093b4 0%, #006f88 100%);
     --bg-card: #1a1b2e;
@@ -53,7 +53,7 @@ h3 {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 h2 {
@@ -79,7 +79,7 @@ button {
     border-radius: var(--radius);
     padding: 0.875rem 1rem;
     background: var(--primary-button);
-    color: var(--bg);
+    color: var(--text-secondary);
     font-weight: 700;
 }
 
@@ -123,13 +123,9 @@ header,
 main {
     width: min(100%, 46rem);
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1.2rem;
 }
 
-main {
-    padding: 1.25rem;
-    margin-top: 1rem;
-}
 
 nav {
     display: flex;
@@ -160,6 +156,47 @@ nav a:hover {
 .back-link:hover {
     color: var(--text);
     text-decoration: none;
+}
+
+.page-hero {
+    margin-bottom: 1.5rem;
+}
+
+.page-description {
+    max-width: 40ch;
+    margin: 0.75rem 0 0;
+    color: var(--text-muted);
+}
+
+.page-title {
+    margin: 0;
+}
+
+/*Ikoner*/
+.value-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    border-radius: 0.9rem;
+    font-size: 1.2rem;
+}
+
+.value-icon-cyan {
+    background: rgba(0, 209, 255, 0.14);
+    color: var(--accent-blue);
+}
+
+.value-icon-teal {
+    background: rgba(0, 255, 157, 0.14);
+    color: var(--accent-green);
+}
+
+.value-icon-purple {
+    background: rgba(112, 0, 255, 0.14);
+    color: var(--accent-purple);
 }
 
 /*Home*/
@@ -216,47 +253,6 @@ nav a:hover {
     line-height: 1.5;
 }
 
-
-.home-featured-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--radius);
-    margin-bottom: 2rem;
-    min-height: 24rem;
-}
-
-.home-featured-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.home-featured-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 1.25rem;
-    background: linear-gradient(180deg,
-            rgba(11, 16, 32, 0.08) 0%,
-            rgba(11, 16, 32, 0.72) 55%,
-            rgba(11, 16, 32, 0.92) 100%);
-}
-
-.home-featured-overlay h2 {
-    margin: 0;
-    max-width: 30ch;
-    padding-bottom: 2rem;
-}
-
-.home-featured-overlay p {
-    max-width: 28ch;
-    margin: 0.75rem 0 1rem;
-    color: rgba(249, 250, 251, 0.9);
-}
-
 .home-lead {
     max-width: 30ch;
     margin: 1rem 0 0;
@@ -311,10 +307,10 @@ nav a:hover {
 }
 
 .home-value-card {
-    background: #f5f1ec;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: var(--radius);
     padding: 1rem;
-    color: #0f1115;
 }
 
 .home-value-card h4 {
@@ -324,6 +320,15 @@ nav a:hover {
 .home-value-card p {
     margin-bottom: 0;
     color: rgba(15, 17, 21, 0.75);
+}
+
+.home-value-card h4 {
+    margin: 0;
+}
+
+.home-value-card p {
+    margin: 0.75rem 0 0;
+    color: var(--text-muted);
 }
 
 .home-cta-card {
@@ -573,7 +578,7 @@ nav a:hover {
 }
 
 .dashboard-hero-actions a:first-child {
-    background: #9ee8c8;
+    background: var(--button-primary);
     color: #0f1115;
 }
 
@@ -607,7 +612,6 @@ nav a:hover {
     padding: 1rem;
     margin-bottom: 2rem;
 }
-
 
 .interest-rate-group {
     margin-top: 0.5rem;
@@ -715,26 +719,14 @@ input[type="range"] {
     padding-bottom: 1rem;
 }
 
-/*Money School*/
-.learn-hero {
-    margin-bottom: 1.5rem;
-}
-
+/*Learn*/
 .learn-hero p:last-child {
     max-width: 34ch;
     color: var(--text-muted);
     line-height: 1.2rem;
 }
 
-.learn-kicker {
-    margin: 0 0 0.5rem;
-    color: var(--accent-green);
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.learn-level-card,
-.learn-featured-card,
+.learn-calculator-card,
 .learn-insight-card,
 .learn-locked-card {
     background: var(--bg-card);
@@ -743,12 +735,80 @@ input[type="range"] {
     padding: 1rem;
 }
 
+.learn-calculator-card,
 .learn-insight-card {
     margin-bottom: 1.5rem;
 }
 
 .learn-level-card {
     margin-bottom: 1rem;
+}
+
+.learn-module-card {
+    background: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+.learn-modules-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.learn-module-card h4 {
+    margin: 0;
+}
+
+.learn-module-card p {
+    margin-bottom: 0;
+    color: var(--text-muted);
+}
+
+.learn-featured-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    min-height: 24rem;
+}
+
+.learn-featured-card h3,
+.learn-featured-card p {
+    color: var(--text);
+}
+
+.learn-featured-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.learn-featured-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(180deg,
+            rgba(11, 16, 32, 0.08) 0%,
+            rgba(11, 16, 32, 0.72) 55%,
+            rgba(11, 16, 32, 0.92) 100%);
+}
+
+.learn-featured-overlay h2 {
+    margin: 0;
+    max-width: 30ch;
+    padding-bottom: 2rem;
+}
+
+.learn-featured-overlay p {
+    max-width: 30ch;
+    margin: 0.75rem 0 1rem;
+    color: rgba(249, 250, 251, 0.9);
 }
 
 .learn-level-header,
@@ -759,40 +819,10 @@ input[type="range"] {
     gap: 1rem;
 }
 
-.learn-level-label,
-.learn-level-progress,
-.learn-section-header p,
-.learn-card-tag {
+.learn-section-header p {
     margin: 0;
     color: var(--text-muted);
     font-size: 0.875rem;
-}
-
-.learn-progress-bar {
-    width: 100%;
-    height: 0.5rem;
-    margin-top: 1rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.learn-progress-fill {
-    width: 62%;
-    height: 100%;
-    border-radius: 999px;
-    background: var(--accent-green);
-}
-
-.learn-featured-card {
-    margin: 1rem 0;
-    background: var(--card-accent-bg-blue);
-    border: none;
-    color: var(--text);
-}
-
-.learn-featured-card h3,
-.learn-featured-card p {
-    color: var(--text);
 }
 
 .learn-featured-action {
@@ -808,26 +838,65 @@ input[type="range"] {
     font-weight: 600;
 }
 
-.learn-locked-section {
-    margin-bottom: 1.5rem;
+.learn-calculator-header {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
 }
 
-.learn-locked-list {
-    display: grid;
-    gap: 1rem;
+.learn-calculator-card h3 {
+    margin: 0.2rem 0 0;
+}
+
+.learn-calculator-card>p {
+    color: var(--text-muted);
+}
+
+.learn-calculator-card label {
+    margin-top: 0.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.learn-calculator-card input[type="range"] {
+    width: 100%;
+    margin: 0.35rem 0 0.75rem;
+    accent-color: var(--accent-green);
+}
+
+.learn-calculator-card label+p {
+    margin: 0.25rem 0 0;
+    color: var(--accent-green-light);
+    font-weight: 600;
+}
+
+.learn-calculator-result {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border-radius: var(--radius);
+    background: var(--card-accent-bg-green);
+}
+
+.learn-calculator-result p {
+    margin: 0;
+    color: rgba(249, 250, 251, 0.85);
+}
+
+.learn-calculator-result h4 {
+    margin: 0.5rem 0 0;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.learn-modules-slider {
     margin-top: 1rem;
 }
 
-.learn-locked-card {
-    opacity: 0.7;
-}
-
-.learn-locked-card h4 {
-    margin: 0;
-}
-
-.learn-locked-card p {
-    margin-bottom: 0;
+.learn-slider-hint {
+    margin: 0.5rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
 }
 
 @media (min-width: 480px) {
@@ -902,6 +971,11 @@ input[type="range"] {
 
 @media (min-width: 760px) {
 
+    header,
+    main {
+        width: min(100%, 70rem);
+    }
+
     nav a {
         padding: 0.25rem 0.5rem;
     }
@@ -936,5 +1010,36 @@ input[type="range"] {
 
     .home-secondary-action {
         min-width: auto;
+    }
+
+    .learn-featured-overlay {
+        padding: 2rem;
+    }
+
+    .learn-featured-overlay h2 {
+        max-width: 12ch;
+        font-size: 2.25rem;
+        line-height: 1;
+    }
+
+    .learn-featured-overlay p {
+        max-width: 45ch;
+        font-size: 1rem;
+    }
+
+    .learn-desktop-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .learn-insight-card {
+        margin-top: 1.5rem;
+    }
+
+    .learn-calculator-card {
+        margin-top: 0;
+        min-height: 100%;
     }
 }

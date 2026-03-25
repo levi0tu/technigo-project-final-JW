@@ -53,11 +53,13 @@ export const Simulator = () => {
 
     return (
         <Layout>
-            <section className="hero-intro">
-                <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
-                <h2>Jämför köp</h2>
-                <p>Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
+            <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
+
+            <section className="page-hero">
+                <h2 className="page-title">Jämför köp</h2>
+                <p className="page-description">Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
             </section>
+
             <section className="simulator-input-card">
                 <label htmlFor="cashPrice">Varans pris</label>
                 <input

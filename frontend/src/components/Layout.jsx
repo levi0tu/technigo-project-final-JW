@@ -44,7 +44,7 @@ export const Layout = ({ children }) => {
                             {isLoggedIn && <Link to="/dashboard">Översikt</Link>}
                             {isLoggedIn && <Link to="/debts">Mina skulder</Link>}
                             <Link to="/simulator">Jämför köp</Link>
-                            <Link to="/learn">Guider</Link>
+                            <Link to="/learn">Pengakoll</Link>
                             {!isLoggedIn && <Link to="/login">Logga in</Link>}
                             {!isLoggedIn && <Link to="/register">Skapa konto</Link>}
                         </nav>

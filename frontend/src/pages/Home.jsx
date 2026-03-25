@@ -1,13 +1,16 @@
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
-import featuredImage from "../images/pexels-serhii-barkanov-2144469453-35382218.jpg"
-
+import {
+    LuBadgePercent,
+    LuWalletCards,
+    LuSparkles,
+} from "react-icons/lu"
 
 export const Home = () => {
     return (
         <Layout>
             <section className="home-hero">
-                <p className="home-kicker">• Framtidens ekonomi</p>
+                <p className="home-kicker">Framtidens ekonomi</p>
                 <h2 className="home-hero-title">Äg dina pengar,
                     <span> innan pengarna äger dig.</span>
                 </h2>
@@ -24,16 +27,7 @@ export const Home = () => {
                     </Link>
                 </div>
             </section>
-            <section className="home-featured-card">
-                <img src={featuredImage} alt="plant growing" className="home-featured-image" />
-                <div className="home-featured-overlay">
-                    <h2>Ränta, hur påverkar den ditt köp?</h2>
-                    <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
-                    <Link className="home-primary-action" to="/learn">
-                        Lär dig mer
-                    </Link>
-                </div>
-            </section>
+
             <section className="home-value-section">
                 <h3>Din finansiella fristad.</h3>
                 <p>
@@ -42,6 +36,9 @@ export const Home = () => {
                 </p>
                 <div className="home-value-list">
                     <article className="home-value-card">
+                        <div className="value-icon value-icon-teal">
+                            <LuBadgePercent />
+                        </div>
                         <h4>Förstå den verkliga kostnaden</h4>
                         <p>
                             Jämför direktköp och delbetalning för att se vad ett köp
@@ -49,6 +46,9 @@ export const Home = () => {
                         </p>
                     </article>
                     <article className="home-value-card">
+                        <div className="value-icon value-icon-cyan">
+                            <LuWalletCards />
+                        </div>
                         <h4>Få full koll på dina avbetalningar</h4>
                         <p>
                             Samla dina skulder på ett ställe och följ hur mycket
@@ -56,6 +56,9 @@ export const Home = () => {
                         </p>
                     </article>
                     <article className="home-value-card">
+                        <div className="value-icon value-icon-purple">
+                            <LuSparkles />
+                        </div>
                         <h4>Bygg bättre ekonomiska vanor</h4>
                         <p>
                             Lär dig mer om ränta, krediter och smartare beslut

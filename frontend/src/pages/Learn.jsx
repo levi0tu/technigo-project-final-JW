@@ -2,6 +2,12 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { getLessons } from "../services/lessonService"
+import featuredImage from "../images/pexels-serhii-barkanov-2144469453-35382218.jpg"
+import { formatCurrency } from "../utility/formatCurrency.js"
+import { BsGraphUpArrow } from "react-icons/bs";
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+
 
 export const Learn = () => {
     const [lessons, setLessons] = useState([])
@@ -17,61 +23,142 @@ export const Learn = () => {
 
     const featuredLesson = lessons[0]
     const moduleLessons = lessons.slice(1)
+    //Ränta på ränta kalkylator
+    const [compoundFormData, setCompoundFormData] = useState({
+        interestRate: 7,
+        monthlySaving: 1000,
+        startingAmount: 1000,
+        years: 20,
+    })
+    const monthlyRate = compoundFormData.interestRate / 100 / 12
+    const totalMonths = compoundFormData.years * 12
+
+    let futureValue = Number(compoundFormData.startingAmount)
+
+    for (let i = 0; i < totalMonths; i++) {
+        futureValue = futureValue * (1 + monthlyRate) + Number(compoundFormData.monthlySaving)
+    }
+
+    const handleCompoundChange = (event) => {
+        const { name, value } = event.target
+
+        setCompoundFormData({
+            ...compoundFormData,
+            [name]: Number(value),
+        })
+    }
 
     return (
         <Layout>
             <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
-            <section className="learn-hero">
-                <h2 className="learn-kicker">Guider</h2>
-                <p>Kunskap är frihet</p>
-                <p>Små lektioner som hjälper dig förstå lån, ränta, krediter och avbetalningar.</p>
+
+            <section className="page-hero">
+                <h2 className="page-title">Pengakoll</h2>
+                <p className="page-description">
+                    Små lektioner och smarta verktyg för ränta, lån och bättre vanor.</p>
             </section>
 
-            <section className="learn-level-card">
-                <div className="learn-level-header">
-                    <p className="learn-level-label">Din nivå</p>
-                    <p className="learn-level-progress">5/8 lektioner klara</p>
-                </div>
-                <h3>Nivå 3: Skuld-krigare</h3>
-                <div className="learn-progress-bar">
-                    <div className="learn-progress-fill"></div>
-                </div>
-            </section>
-            <p>{lessons.length} lessons</p>
-
-            {featuredLesson && (
+            <section className="learn-desktop-grid">
                 <section className="learn-featured-card">
-                    <p className="learn-card-tag">Utvald lektion</p>
-                    <h3>{featuredLesson.title}</h3>
-                    <p>{featuredLesson.content}</p>
-                    <Link className="learn-featured-action" to="/">
-                        Starta lektion
-                    </Link>
+                    <img
+                        src={featuredImage}
+                        alt="ränta"
+                        className="learn-featured-image"
+                    />
+                    <div className="learn-featured-overlay">
+                        <p className="learn-card-tag">Utvald lektion</p>
+                        <h2>Ränta, hur påverkar den ditt köp?</h2>
+                        <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
+                        <Link className="learn-featured-action" to="/simulator">
+                            Räkna på ditt köp
+                        </Link>
+                    </div>
                 </section>
-            )}
+
+                <section className="learn-calculator-card">
+                    <div className="value-icon value-icon-cyan"><BsGraphUpArrow /></div>
+                    <h3>Ränta på ränta-kalkylator</h3>
+                    <p>Se hur ditt sparande växer över tid.</p>
+                    <label htmlFor="startingAmount">Startbelopp (kr)</label>
+                    <p>{formatCurrency(compoundFormData.startingAmount)} kr</p>
+                    <input
+                        id="startingAmount"
+                        name="startingAmount"
+                        type="range"
+                        min="0"
+                        max="100000"
+                        step="1000"
+                        value={compoundFormData.startingAmount}
+                        onChange={handleCompoundChange}
+                    />
+                    <label htmlFor="monthlySaving">Månadssparande (kr/mån)</label>
+                    <p>{formatCurrency(compoundFormData.monthlySaving)} kr</p>
+                    <input
+                        id="monthlySaving"
+                        name="monthlySaving"
+                        type="range"
+                        min="0"
+                        max="5000"
+                        step="100"
+                        value={compoundFormData.monthlySaving}
+                        onChange={handleCompoundChange}
+                    />
+                    <label htmlFor="interestRate">Ränta per år (%)</label>
+                    <p>{compoundFormData.interestRate}%</p>
+                    <input
+                        id="interestRate"
+                        name="interestRate"
+                        type="range"
+                        min="0"
+                        max="15"
+                        step="1"
+                        value={compoundFormData.interestRate}
+                        onChange={handleCompoundChange}
+                    />
+                    <label htmlFor="years">Sparhorisont</label>
+                    <p>{compoundFormData.years} år</p>
+                    <input
+                        id="years"
+                        name="years"
+                        type="range"
+                        min="1"
+                        max="40"
+                        step="1"
+                        value={compoundFormData.years}
+                        onChange={handleCompoundChange}
+                    />
+                    <div className="learn-calculator-result">
+                        <p>Totalt spar-belopp efter {compoundFormData.years} år</p>
+                        <h4>{formatCurrency(Math.round(futureValue))} kr</h4>
+                    </div>
+                </section>
+            </section>
+
             <section className="learn-insight-card">
                 <p className="learn-card-tag">Dagens insikt</p>
                 <p>Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
                     så behåller du kontrollen.
                 </p>
             </section>
-            <section className="learn-locked-section">
-                <div className="learn-section-header">
-                    <h3>Lås upp</h3>
-                    <p>Kräver nivå 5</p>
-                </div>
-                <div className="learn-locked-list">
-                    <article className="learn-locked-card">
-                        <h4>Investeringspsykologi</h4>
-                        <p>Kommer senare</p>
-                    </article>
 
-                    <article className="learn-locked-card">
-                        <h4>Skatte-optimering</h4>
-                        <p>Kommer senare</p>
-                    </article>
-                </div>
+            <section className="learn-modules-section">
+                <h3>Tips</h3>
+                <p className="learn-slider-hint">Svep för att se fler moduler →</p>
+                <Swiper
+                    spaceBetween={16}
+                    slidesPerView={1.2}
+                    className="learn-modules-slider"
+                >
+                    {lessons.map((lesson) => (
+                        <SwiperSlide key={lesson._id}>
+                            <article className="learn-module-card">
+                                <h4>{lesson.title}</h4>
+                                <p>{lesson.content}</p>
+                            </article>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </section>
-        </Layout>
+        </Layout >
     )
 }
