@@ -196,8 +196,14 @@ nav a:hover {
 
 .value-icon-purple {
     background: rgba(112, 0, 255, 0.14);
-    color: var(--accent-purple);
+    color: #b48cff;
 }
+
+.value-icon-red {
+    background: var(--surface);
+    color: var(--danger);
+}
+
 
 /*Home*/
 .home-hero {
@@ -285,6 +291,7 @@ nav a:hover {
     color: var(--text);
 }
 
+.simulator-result-section,
 .home-value-section {
     padding: 1.25rem;
     margin-bottom: 2rem;
@@ -474,7 +481,7 @@ nav a:hover {
 }
 
 
-/*Dashboard page*/
+/*Dashboard*/
 .dashboard-stats {
     margin: 1.5rem 0;
 }
@@ -588,11 +595,48 @@ nav a:hover {
 }
 
 /*Simulator*/
-.simulator-result-card {
-    background: var(--card-bg);
+.simulator-input-card {
+    background: var(--bg-card);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
-    padding: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.simulator-input-card label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.simulator-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.simulator-card-header h3 {
+    margin: 0;
+}
+
+.simulator-card-header p {
+    margin: 0.35rem 0 0;
+    color: var(--text-muted);
+}
+
+.simulator-slider-value {
+    margin: 0 0 0.35rem;
+    color: var(--accent-green-light);
+    font-weight: 600;
+}
+
+.simulator-input-card input[type="range"] {
+    width: 100%;
+    margin: 0 0 0.75rem;
+    accent-color: var(--accent-green);
 }
 
 .simulator-status {
@@ -605,43 +649,30 @@ nav a:hover {
     margin-top: 1rem;
 }
 
-.simulator-input-card {
-    background: var(--card-bg);
+.simulator-result-section {
+    background: var(--bg-card);
     border: 1px solid var(--card-border);
     border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.simulator-result-panel h3 {
+    margin-bottom: 1rem;
+}
+
+.simulator-result-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
     padding: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
-.interest-rate-group {
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-}
-
-.interest-rate-value {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-input[type="range"] {
-    margin-bottom: 0.5rem;
-}
-
-.simulator-badge {
-    display: inline-flex;
-    margin: 0 0 0.75rem;
-    padding: 0.35rem 0.65rem;
-    border-radius: 999px;
-    background: var(--card-highlight);
-    color: var(--accent-green);
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-.simulator-badge--muted {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--text-muted);
+.simulator-result-label {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
 }
 
 .simulator-result-amount {
@@ -649,74 +680,56 @@ input[type="range"] {
     font-size: 2rem;
     font-weight: 700;
     line-height: 1;
-    color: var(--text);
+    color: var(--text-primary);
 }
 
-.simulator-result-meta {
+.simulator-highlight-card {
+    background: var(--card-accent-bg-green);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.simulator-highlight-amount {
     margin: 0.5rem 0 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.simulator-highlight-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.simulator-highlight-meta-value {
+    margin: 0.35rem 0 0;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.simulator-info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
+}
+
+.simulator-info-card p {
+    margin: 0;
     color: var(--text-muted);
 }
 
-.pay-later .simulator-result-meta {
-    color: #f4b6a8;
-}
-
-.simulator-impact-card {
-    background: var(--card-accent-bg);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-top: 1rem;
-}
-
-.simulator-impact-label {
-    margin: 0;
-    color: rgba(249, 250, 251, 0.8);
-}
-
-.simulator-impact-value {
-    margin: 0.75rem 0 0;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.simulator-impact-text {
-    margin: 0.75rem 0 0;
-    color: rgba(249, 250, 251, 0.85);
-}
-
-.simulator-result-card h3 {
-    margin: 0;
-}
-
-.simulator-result-card p {
-    margin-left: 0;
-}
-
-.pay-later {
-    background: var(--card-bg);
-}
-
-.pay-now {
-    background: var(--card-highlight);
-}
-
-.simulator-status {
-    margin: 1rem 0 0;
-    font-size: 0.875rem;
-    font-weight: 600;
-}
-
-.simulator-status--good {
-    color: var(--accent-green);
-}
-
-.simulator-status--warning {
-    color: #f4b6a8;
-}
-
-.simulator-result-meta {
-    padding-bottom: 1rem;
+.simulator-info-card svg {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    color: var(--accent-green-light);
 }
 
 /*Learn*/
@@ -1041,5 +1054,17 @@ input[type="range"] {
     .learn-calculator-card {
         margin-top: 0;
         min-height: 100%;
+    }
+
+    .simulator-layout-grid {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .simulator-input-card,
+    .simulator-result-panel {
+        margin: 0;
     }
 }

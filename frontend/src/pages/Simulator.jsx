@@ -2,13 +2,14 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { formatCurrency } from "../utility/formatCurrency.js"
+import { BsCalculator, BsInfoCircle } from "react-icons/bs"
+import { HiMiniCheckBadge, HiMiniExclamationTriangle } from "react-icons/hi2"
 
 export const Simulator = () => {
     const [formData, setFormData] = useState({
         cashPrice: "",
         monthlyCost: "",
         months: "",
-        interestRate: "",
     })
 
     const handleChange = (event) => {
@@ -16,119 +17,116 @@ export const Simulator = () => {
 
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: Number(value),
         })
     }
     const cashPrice = Number(formData.cashPrice)
     const monthlyCost = Number(formData.monthlyCost)
     const months = Number(formData.months)
-    const interestRate = Number(formData.interestRate)
-    const estimatedInterest = cashPrice * (interestRate / 100) * (months / 12)
-    const estimatedInstallmentTotal = cashPrice + estimatedInterest
-    const hasExactInstallmentData = monthlyCost > 0 && months > 0
-    const hasEstimatedInstallmentData = cashPrice > 0 && interestRate > 0 && months > 0
-    const installmentTotal = hasExactInstallmentData
-        ? monthlyCost * months
-        : hasEstimatedInstallmentData
-            ? estimatedInstallmentTotal
-            : 0
-    const calculationMode = hasExactInstallmentData
-        ? "exact"
-        : hasEstimatedInstallmentData
-            ? "estimated"
-            : "none"
-    const calculationModeText =
-        calculationMode === "exact"
-            ? "Baserat på din månadsbetalning"
-            : calculationMode === "estimated"
-                ? "Uppskattat från ränta"
-                : "Fyll i fler uppgifter"
+    const minMonths =
+        monthlyCost > 0 ? Math.ceil(cashPrice / monthlyCost) : 1
+    const effectiveMonths = Math.max(months || 1, minMonths)
 
+    const rawInstallmentTotal = monthlyCost * effectiveMonths
+    const installmentTotal = Math.max(rawInstallmentTotal, cashPrice)
     const difference = installmentTotal - cashPrice
 
-    const errorMessage =
-        installmentTotal > 0 && difference < 0
-            ? "Kontrollera dina värden. Delbetalning kan inte bli billigare här."
-            : ""
 
     return (
         <Layout>
             <Link className="back-link" to="/">← Tillbaka till Startsidan</Link>
 
             <section className="page-hero">
-                <h2 className="page-title">Jämför köp</h2>
+                <h2 className="page-title">Köp nu eller dela upp?</h2>
                 <p className="page-description">Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
             </section>
+            <div className="simulator-layout-grid">
+                <section className="simulator-input-card">
+                    <div className="simulator-card-header">
+                        <div className="value-icon value-icon-cyan">
+                            <BsCalculator />
+                        </div>
+                        <div>
+                            <h3>Din jämförelse</h3>
+                            <p>Justera reglagen för att se hur valet påverkar totalpriset</p>
+                        </div>
+                    </div>
 
-            <section className="simulator-input-card">
-                <label htmlFor="cashPrice">Varans pris</label>
-                <input
-                    id="cashPrice"
-                    name="cashPrice"
-                    type="number"
-                    value={formData.cashPrice}
-                    onChange={handleChange}
-                />
-                <label htmlFor="monthlyCost">Fyll i månadskostnad om du vet den</label>
-                <input
-                    id="monthlyCost"
-                    name="monthlyCost"
-                    type="number"
-                    value={formData.monthlyCost}
-                    onChange={handleChange}
-                />
-                <div className="interest-rate-group">
-                    <label htmlFor="interestRate">Ränta</label>
-                    <p className="interest-rate-value">{interestRate || 0} %</p>
+                    <label htmlFor="cashPrice">Inköpspris</label>
+                    <p className="simulator-slider-value">{formatCurrency(cashPrice)} kr</p>
                     <input
-                        id="interestRate"
-                        name="interestRate"
+                        id="cashPrice"
+                        name="cashPrice"
                         type="range"
-                        min="0"
-                        max="30"
-                        step="1"
-                        value={formData.interestRate}
+                        min="1000"
+                        max="100000"
+                        step="500"
+                        value={formData.cashPrice}
                         onChange={handleChange}
-
                     />
-                    <p className="simulator-result-meta">
-                        Använd räntan för en uppskattning om du inte vet månadskostnaden.
-                    </p>
-                </div>
-                <label htmlFor="months">Antal månader</label>
-                <input
-                    id="months"
-                    name="months"
-                    type="number"
-                    value={formData.months}
-                    onChange={handleChange}
-                />
-            </section>
-            {errorMessage && <p>{errorMessage}</p>}
+                    <label htmlFor="monthlyCost">Månadskostnad</label>
+                    <p className="simulator-slider-value">{formatCurrency(monthlyCost)} kr</p>
+                    <input
+                        id="monthlyCost"
+                        name="monthlyCost"
+                        type="range"
+                        min="100"
+                        max="20000"
+                        step="100"
+                        value={formData.monthlyCost}
+                        onChange={handleChange}
+                    />
 
-
-            <section className="simulator-results">
-                <section className="simulator-result-card pay-now">
-                    {difference < 0 && <p className="simulator-badge">Bäst val</p>}
-                    <h3>Direktköp</h3>
-                    <p className="simulator-result-amount">{formatCurrency(formData.cashPrice)} kr</p>
-                    {difference > 0 && (<p className="simulator-status simulator-status--good">Lägre totalkostnad</p>)}
-
+                    <label htmlFor="months">Antal månader</label>
+                    <p className="simulator-slider-value">{effectiveMonths} mån</p>
+                    <input
+                        id="months"
+                        name="months"
+                        type="range"
+                        min={minMonths}
+                        max="48"
+                        step="1"
+                        value={effectiveMonths}
+                        onChange={handleChange}
+                    />
                 </section>
-                <section className="simulator-result-card pay-later">
-                    {difference > 0 && (<p className="simulator-badge simulator-badge--muted">Dyrare val</p>)}
-                    <h3>Delbetalning</h3>
-                    <p className="simulator-result-amount">{formatCurrency(installmentTotal.toFixed(0))} kr</p>
-                    {difference > 0 && (<p className="simulator-status simulator-status--warning">Högre total kostnad</p>)}
-                    <p>{calculationModeText}</p>
-                </section>
-            </section>
-            <section className="simulator-impact-card">
-                <p className="simulator-impact-level">Skillnad i kr</p>
-                <p className="simulator-impact-value">{formatCurrency(difference.toFixed(0))} kr</p>
-                {difference > 0 && (<p className="simulator-impact-text">Så mycket dyrare blir delbetalning</p>)}
 
-            </section>
-        </Layout>
+                <section className="simulator-result-section">
+                    <h3>Resultatjämförelse</h3>
+
+                    <div className="simulator-results">
+                        <p className="simulator-result-label">Direktköp</p>
+                        <p className="simulator-result-amount">{formatCurrency(formData.cashPrice)} kr</p>
+                        {difference > 0 && (<p className="simulator-status simulator-status--good">Lägre totalkostnad</p>)}
+
+                        <div className="simulator-highlight-card">
+                            <p className="simulator-result-label">Total kostnad vid delbetalning</p>
+                            <p className="simulator-highlight-amount">{formatCurrency(installmentTotal)} kr</p>
+                        </div>
+                        <div className="simulator-highlight-meta">
+                            <div>
+                                <p className="simulator-result-label">Extra kostnad</p>
+                                <p className="simulator-highlight-meta-value">
+                                    {difference > 0 ? "+" : ""}
+                                    {formatCurrency(difference)} kr
+                                </p>
+                            </div>
+
+                            <div>
+                                <p className="simulator-result-label">Tid att betala av</p>
+                                <p className="simulator-highlight-meta-value">{effectiveMonths} månader</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="simulator-info-card">
+                        <BsInfoCircle />
+                        <p>
+                            Extra kostnad kan bestå av ränta och avgifter. Överväg om direktköp är mer fördelaktigt för din ekonomi i längden.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </Layout >
     )
 }
