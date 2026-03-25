@@ -7,8 +7,8 @@ import { HiMiniCheckBadge, HiMiniExclamationTriangle } from "react-icons/hi2"
 
 export const Simulator = () => {
     const [formData, setFormData] = useState({
-        cashPrice: "",
-        monthlyCost: "",
+        cashPrice: 1000,
+        monthlyCost: 100,
         months: "",
     })
 
