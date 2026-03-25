@@ -19,11 +19,11 @@ export const Home = () => {
                     Ta kontroll över din ekonomi med smarta verktyg för bättre kontroll i vardagen.
                 </p>
                 <div className="home-hero-actions">
-                    <Link className="home-primary-action" to="/register">
-                        Kom igång
+                    <Link className="home-primary-action" to="/login">
+                        Logga in
                     </Link>
-                    <Link className="home-secondary-action" to="/simulator">
-                        Se hur det funkar
+                    <Link className="home-secondary-action" to="/register">
+                        Registera konto
                     </Link>
                 </div>
             </section>
