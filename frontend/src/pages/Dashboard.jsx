@@ -29,14 +29,18 @@ export const Dashboard = () => {
 
     return (
         <Layout>
-            <h2>Översikt</h2>
-            <p>Hej {user?.name}</p>
-            <p>Här får du snabb koll på läget.</p>
-            <section className="dashboard-hero">
-                <p>Din skuldöversikt</p>
-                <p className="dashboard-hero-amount">
-                    {formatCurrency(dashboardData?.totalDebtAmount)} kr
-                </p>
+            <section className="page-hero">
+                <h2 className="page-title">Översikt</h2>
+                <p className="page-description">Hej {user?.name}, här får du snabbt koll på läget.</p>
+            </section>
+
+            <section className="dashboard-hero base-card">
+                <div className="surface-positive">
+                    <p className="dashboard-hero card-label">Din skuldöversikt</p>
+                    <p className="dashboard-hero-amount">
+                        {formatCurrency(dashboardData?.totalDebtAmount)} kr
+                    </p>
+                </div>
                 <div className="dashboard-hero-actions">
                     <Link to="/debts">Lägg till skuld</Link>
                     <Link to="/debts">Visa skulder</Link>

@@ -19,7 +19,6 @@ export const Layout = ({ children }) => {
                 setIsMenuOpen(false)
             }
         }
-
         syncMenuMode()
         window.addEventListener("resize", syncMenuMode)
 
@@ -29,7 +28,7 @@ export const Layout = ({ children }) => {
     return (
         <div>
             <header>
-                <h1><GiFlowerEmblem /> Växla Upp</h1>
+                <h1><GiFlowerEmblem />Växla Upp</h1>
                 <div className="nav-shell">
                     <p className="nav-label mobile-only">Meny</p>
                     <button

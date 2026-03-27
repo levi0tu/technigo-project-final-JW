@@ -55,8 +55,13 @@ export const DebtDetail = () => {
     return (
         <Layout>
             <Link className="back-link" to="/debts">← Tillbaka till Mina skulder</Link>
-            <h2>Skulddetaljer</h2>
-            <p>Här ser du detaljerna för din skuld.</p>
+
+            <section className="page-hero">
+                <h2 className="page-title">Skulddetaljer</h2>
+                <p className="page-description">
+                    Här ser du detaljerna för din skuld.</p>
+            </section>
+
             <p>Skuld-ID: {id}</p>
             {isLoading ? (
                 <p>Laddar skuld...</p>

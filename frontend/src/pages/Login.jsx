@@ -42,8 +42,12 @@ export const Login = () => {
 
     return (
         <Layout>
-            <h2>Logga in</h2>
-            <p>Växla upp din koll på pengarna.</p>
+            <section className="page-hero">
+                <h2 className="page-title">Logga in</h2>
+                <p className="page-description">
+                    Växla upp din koll på pengarna.</p>
+            </section>
+
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">E-post</label>
                 <input

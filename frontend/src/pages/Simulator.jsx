@@ -41,7 +41,7 @@ export const Simulator = () => {
                 <p className="page-description">Se vad delbetalning faktiskt kostar innan du bestämmer dig</p>
             </section>
             <div className="simulator-layout-grid">
-                <section className="simulator-input-card">
+                <section className="base-card">
                     <div className="simulator-card-header">
                         <div className="value-icon value-icon-cyan">
                             <BsCalculator />
@@ -95,17 +95,18 @@ export const Simulator = () => {
                     <h3>Resultatjämförelse</h3>
 
                     <div className="simulator-results">
-                        <p className="simulator-result-label">Direktköp</p>
-                        <p className="simulator-result-amount">{formatCurrency(formData.cashPrice)} kr</p>
-                        {difference > 0 && (<p className="simulator-status simulator-status--good">Lägre totalkostnad</p>)}
-
-                        <div className="simulator-highlight-card">
-                            <p className="simulator-result-label">Total kostnad vid delbetalning</p>
-                            <p className="simulator-highlight-amount">{formatCurrency(installmentTotal)} kr</p>
+                        <div className="simulator-cash-card base-card">
+                            <p className="card-label">Direktköp</p>
+                            <p className="simulator-result-amount card-amount">{formatCurrency(formData.cashPrice)} kr</p>
+                            {difference > 0 && (<p className="simulator-status simulator-status--good">Lägre totalkostnad</p>)}
+                        </div>
+                        <div className="simulator-highlight-card surface-positive">
+                            <p className="card-label">Total kostnad vid delbetalning</p>
+                            <p className="simulator-highlight-amount card-amount">{formatCurrency(installmentTotal)} kr</p>
                         </div>
                         <div className="simulator-highlight-meta">
                             <div>
-                                <p className="simulator-result-label">Extra kostnad</p>
+                                <p className="card-label">Extra kostnad</p>
                                 <p className="simulator-highlight-meta-value">
                                     {difference > 0 ? "+" : ""}
                                     {formatCurrency(difference)} kr
@@ -113,7 +114,7 @@ export const Simulator = () => {
                             </div>
 
                             <div>
-                                <p className="simulator-result-label">Tid att betala av</p>
+                                <p className="card-label">Tid att betala av</p>
                                 <p className="simulator-highlight-meta-value">{effectiveMonths} månader</p>
                             </div>
                         </div>
@@ -126,7 +127,7 @@ export const Simulator = () => {
                         </p>
                     </div>
                 </section>
-            </div>
+            </div >
         </Layout >
     )
 }

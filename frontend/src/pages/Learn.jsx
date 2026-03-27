@@ -75,7 +75,7 @@ export const Learn = () => {
                     </div>
                 </section>
 
-                <section className="learn-calculator-card">
+                <section className="base-card">
                     <div className="value-icon value-icon-cyan"><BsGraphUpArrow /></div>
                     <h3>Ränta på ränta-kalkylator</h3>
                     <p>Se hur ditt sparande växer över tid.</p>
@@ -127,14 +127,14 @@ export const Learn = () => {
                         value={compoundFormData.years}
                         onChange={handleCompoundChange}
                     />
-                    <div className="learn-calculator-result">
+                    <div className="learn-calculator-result surface-positive">
                         <p>Totalt spar-belopp efter {compoundFormData.years} år</p>
                         <h4>{formatCurrency(Math.round(futureValue))} kr</h4>
                     </div>
                 </section>
             </section>
 
-            <section className="learn-insight-card">
+            <section className="learn-insight-card learning-card">
                 <p className="learn-card-tag">Dagens insikt</p>
                 <p>Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
                     så behåller du kontrollen.
@@ -143,7 +143,7 @@ export const Learn = () => {
 
             <section className="learn-modules-section">
                 <h3>Tips</h3>
-                <p className="learn-slider-hint">Svep för att se fler moduler →</p>
+                <p className="learn-slider-hint">Svep för att se fler tips →</p>
                 <Swiper
                     spaceBetween={16}
                     slidesPerView={1.2}

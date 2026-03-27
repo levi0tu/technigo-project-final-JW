@@ -23,7 +23,7 @@ export const Home = () => {
                         Logga in
                     </Link>
                     <Link className="home-secondary-action" to="/register">
-                        Registera konto
+                        Registrera konto
                     </Link>
                 </div>
             </section>
@@ -40,9 +40,7 @@ export const Home = () => {
                             <LuBadgePercent />
                         </div>
                         <h4>Förstå den verkliga kostnaden</h4>
-                        <p>
-                            Jämför direktköp och delbetalning för att se vad ett köp
-                            faktiskt kostar.
+                        <p>Jämför direktköp och delbetalning för att se vad ett köp faktiskt kostar.
                         </p>
                     </article>
                     <article className="home-value-card">
@@ -50,9 +48,7 @@ export const Home = () => {
                             <LuWalletCards />
                         </div>
                         <h4>Få full koll på dina avbetalningar</h4>
-                        <p>
-                            Samla dina skulder på ett ställe och följ hur mycket
-                            som redan är betalt.
+                        <p>Samla dina skulder på ett ställe och följ hur mycket som redan är betalt.
                         </p>
                     </article>
                     <article className="home-value-card">
@@ -60,18 +56,14 @@ export const Home = () => {
                             <LuSparkles />
                         </div>
                         <h4>Bygg bättre ekonomiska vanor</h4>
-                        <p>
-                            Lär dig mer om ränta, krediter och smartare beslut
-                            steg för steg.
+                        <p>Lär dig mer om ränta, krediter och smartare beslut steg för steg.
                         </p>
                     </article>
                 </div>
             </section>
             <section className="home-cta-card">
                 <h3>Redo att växla upp?</h3>
-                <p>
-                    Börja med att skapa konto eller testa simulatorn och se hur
-                    små val påverkar din ekonomi.
+                <p>Börja med att skapa konto eller testa simulatorn och se hur små val påverkar din ekonomi.
                 </p>
                 <Link className="home-primary-action" to="/register">
                     Kom igång nu

@@ -1,26 +1,32 @@
 :root {
-    --bg: #0b1020;
-    --surface: #1f2933;
-    --accent-green: #00ff9d;
-    --accent-orange: #fb923c;
-    --accent-green-light: #9ee8c8;
-    --accent-purple: #7000ff;
-    --accent-blue: #00d1ff;
-    --text-primary: #f9fafb;
-    --text-secondary: #23242b;
-    --text-muted: #9ca3af;
-    --danger: #f97373;
-    --success: #16a34a;
+    /* Base */
+    --color-bg: #0b1020;
+    --color-surface: #1a1b2e;
+    --color-border: #ffffff14;
+    /* Brand */
+    --color-positive: #00ff9d;
+    --color-data: #00d1ff;
+    --color-learning: #7000ff;
+    /* Text */
+    --color-text: #f9fafb;
+    --color-text-muted: #9ca3af;
+    --color-text-dark: #0f1115;
+    /* Interactive surfaces */
+    --color-button-primary: #8cd8bb;
+    --color-button-inverted: #eeefff;
+    --color-focus-ring: rgba(0, 255, 157, 0.18);
+    /* Cards */
+    --color-card-bg: #ffffff08;
+    --color-card-bg-2: #9ee8c814;
+    --color-card-highlight: #4ade801f;
+    --color-card-border: #ffffff0f;
+    /* Gradients */
+    --gradient-primary: linear-gradient(180deg, #00ff9d 0%, #125340 100%);
+    --gradient-secondary: linear-gradient(180deg, #0093b4 0%, #006f88 100%);
+    --gradient-tertiary: linear-gradient(180deg, #6f00ff1e 0%, #4500a056 100%);
+    /* Radius */
+    --radius-xs: 6px;
     --radius: 12px;
-    --button-primary: #8cd8bb;
-    --button-inverted: #eeefff;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --card-border: rgba(255, 255, 255, 0.06);
-    --card-highlight: rgba(74, 222, 128, 0.12);
-    --card-accent-bg-green: linear-gradient(180deg, #00ff9d 0%, #125340 100%);
-    --card-accent-bg-purple: linear-gradient(180deg, #6000dd 0%, #4500a0 100%);
-    --card-accent-bg-blue: linear-gradient(180deg, #0093b4 0%, #006f88 100%);
-    --bg-card: #1a1b2e;
 }
 
 * {
@@ -30,8 +36,8 @@
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    background: var(--bg);
-    color: var(--text-primary);
+    background: var(--color-bg);
+    color: var(--color-text);
 }
 
 img {
@@ -65,7 +71,7 @@ p {
 }
 
 a {
-    color: var(--accent-green);
+    color: var(--color-positive);
     text-decoration: none;
 }
 
@@ -78,8 +84,8 @@ button {
     border: none;
     border-radius: var(--radius);
     padding: 0.875rem 1rem;
-    background: var(--primary-button);
-    color: var(--text-secondary);
+    background: var(--color-button-primary);
+    color: var(--color-text-dark);
     font-weight: 700;
 }
 
@@ -95,23 +101,23 @@ form button {
 label {
     display: block;
     margin-bottom: 0.35rem;
-    color: var(--text)
+    color: var(--color-text);
 }
 
 input {
     width: 100%;
-    border: 1px solid #334155;
+    border: 1px solid var(--color-card-border);
     border-radius: 1rem;
     padding: 0.875rem 1rem;
     background: #1b2430;
-    color: var(--text);
+    color: var(--color-text);
     margin-bottom: 0.75rem;
 }
 
 input:focus {
     outline: none;
-    border-color: var(--accent-green);
-    box-shadow: 0 0 0 3px var(--card-highlight);
+    border-color: var(--color-positive);
+    box-shadow: 0 0 0 3px var(--color-card-highlight);
 }
 
 form {
@@ -119,18 +125,25 @@ form {
     gap: 0.75rem;
 }
 
-header,
-main {
-    width: min(100%, 46rem);
+main,
+header {
     margin: 0 auto;
-    padding: 1.2rem;
 }
 
+main {
+    width: min(100%, 46rem);
+    padding: 1rem;
+}
+
+header {
+    width: min(100%, 46rem);
+    padding: 1rem;
+}
 
 nav {
     display: flex;
     flex-direction: column;
-    gap: 0, 75rem;
+    gap: 0.75rem;
 }
 
 nav a {
@@ -139,7 +152,7 @@ nav a {
 }
 
 nav a:hover {
-    background: var(--card-highlight);
+    background: var(--color-card-highlight);
 }
 
 .auth-link {
@@ -149,12 +162,12 @@ nav a:hover {
 .back-link {
     display: inline-flex;
     margin-bottom: 1rem;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-size: 0.95rem;
 }
 
 .back-link:hover {
-    color: var(--text);
+    color: var(--color-text);
     text-decoration: none;
 }
 
@@ -165,11 +178,93 @@ nav a:hover {
 .page-description {
     max-width: 40ch;
     margin: 0.75rem 0 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
 }
 
 .page-title {
     margin: 0;
+}
+
+.base-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.learning-card {
+    background: var(--gradient-tertiary);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-label {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.card-amount {
+    margin: 0.5rem 0 0;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--color-text);
+}
+
+.card-meta {
+    margin: 0.75rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.surface-positive,
+.surface-data,
+.surface-learning {
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.surface-positive {
+    background: var(--gradient-primary);
+    color: var(--color-text);
+}
+
+.surface-data {
+    background: linear-gradient(180deg, rgba(0, 209, 255, 0.12) 0%, rgba(0, 111, 136, 0.18) 100%);
+    border: 1px solid rgba(0, 209, 255, 0.14);
+    color: var(--color-text);
+}
+
+.surface-learning {
+    background: linear-gradient(180deg, rgba(112, 0, 255, 0.14) 0%, rgba(69, 0, 160, 0.22) 100%);
+    border: 1px solid rgba(112, 0, 255, 0.16);
+    color: var(--color-text);
+}
+
+.dashboard-hero {
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.debts-summary-card {
+    padding: 1.25rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.learn-calculator-result {
+    margin-top: 1.25rem;
+    padding: 1rem;
+    border-radius: var(--radius);
+}
+
+.debt-form-section {
+    margin-top: 2rem;
+    padding: 1.25rem;
 }
 
 /*Ikoner*/
@@ -177,21 +272,22 @@ nav a:hover {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
     margin-bottom: 1rem;
-    border-radius: 0.9rem;
+    border-radius: 0.5rem;
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 .value-icon-cyan {
     background: rgba(0, 209, 255, 0.14);
-    color: var(--accent-blue);
+    color: var(--color-secondary);
 }
 
 .value-icon-teal {
     background: rgba(0, 255, 157, 0.14);
-    color: var(--accent-green);
+    color: var(--color-positive);
 }
 
 .value-icon-purple {
@@ -200,20 +296,19 @@ nav a:hover {
 }
 
 .value-icon-red {
-    background: var(--surface);
+    background: var(--color-surface);
     color: var(--danger);
 }
 
-
 /*Home*/
 .home-hero {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     max-width: 42rem;
 }
 
 .home-kicker {
     margin: 0 0 1rem;
-    color: var(--accent-green);
+    color: var(--color-positive);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -229,46 +324,26 @@ nav a:hover {
 }
 
 .home-hero-title span {
-    color: var(--accent-green);
+    color: var(--color-positive);
 }
 
 .home-hero-actions {
     display: grid;
     gap: 0.9rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     justify-content: start;
-}
-
-.home-primary-action {
-    min-width: 11rem;
-}
-
-.home-secondary-action {
-    justify-content: flex-start;
-    min-height: auto;
-    padding: 0;
-    background: transparent;
-    color: var(--text-primary);
-}
-
-.home-lead {
-    max-width: 28ch;
-    margin: 1.5rem 0 0;
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.5;
 }
 
 .home-lead {
     max-width: 30ch;
-    margin: 1rem 0 0;
-    color: var(--text-muted);
+    margin: 1.5rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.5;
 }
 
-.home-hero-actions {
-    display: grid;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
+.home-primary-action {
+    min-width: 11rem;
 }
 
 .home-primary-action,
@@ -283,39 +358,36 @@ nav a:hover {
 }
 
 .home-primary-action {
-    background: #9ee8c8;
-    color: #0f1115;
+    background: var(--color-button-primary);
+    color: var(--color-text-dark);
 }
 
 .home-secondary-action {
-    color: var(--text);
+    color: var(--color-text);
+    justify-content: flex-start;
+    background: transparent;
 }
 
 .simulator-result-section,
 .home-value-section {
     padding: 1.25rem;
-    margin-bottom: 2rem;
-    background: rgba(158, 232, 200, 0.08);
+    margin-bottom: 1.5rem;
+    background: var(--color-card-bg-2);
     border-radius: var(--radius);
 }
 
-.home-value-section h3 {
-    margin-bottom: 0.75rem;
-}
-
 .home-value-section>p {
-    color: var(--text-muted);
+    color: var(--color-text-muted);
 }
 
 .home-value-list {
     display: grid;
     gap: 1rem;
-    margin-top: 1.5rem;
 }
 
 .home-value-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
     padding: 1rem;
 }
@@ -325,22 +397,13 @@ nav a:hover {
 }
 
 .home-value-card p {
-    margin-bottom: 0;
-    color: rgba(15, 17, 21, 0.75);
-}
-
-.home-value-card h4 {
-    margin: 0;
-}
-
-.home-value-card p {
     margin: 0.75rem 0 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
 }
 
 .home-cta-card {
     padding: 1.25rem;
-    background: var(--card-accent-bg);
+    background: var(--color-card-bg);
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
@@ -349,12 +412,8 @@ nav a:hover {
 
 }
 
-.home-cta-card h3 {
-    margin-bottom: 0.75rem;
-}
-
 .home-cta-card p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     color: rgba(249, 250, 251, 0.85);
 }
 
@@ -365,38 +424,18 @@ nav a:hover {
 }
 
 /*Debts page*/
-.debt-item+.debt-item {
-    margin-top: 0.75rem;
-}
 
 .debt-list {
     margin-top: 1rem;
 }
 
-.debts-summary-label {
-    margin: 0;
-    color: var(--text)
-}
-
-.debts-summary-card {
-    background: var(--card-accent-bg-green);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin: 1rem 0 1.5rem;
-}
-
-.debts-summary-amount {
-    margin: 0.75rem 0 0;
-    font-size: 2rem;
-    font-weight: 500;
-    line-height: 1;
-}
-
 .debt-item {
-    background: var(--bg-card);
-    border: 1px solid var(--card-border);
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
     padding: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 25rem;
 }
 
 .debt-item a {
@@ -412,13 +451,13 @@ nav a:hover {
 
 .debts-section-header p {
     margin: 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
 .debt-item-meta {
     margin: 0.75rem 0 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -439,29 +478,13 @@ nav a:hover {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
     border-radius: var(--radius);
-    background: var(--accent-green-light);
-    color: var(--bg);
-}
-
-.debt-form-section {
-    margin-top: 2rem;
-    background: var(--card-accent-bg-purple);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-}
-
-.debt-form-section h3 {
-    margin-bottom: 0.5rem;
-}
-
-.debts-summary-meta {
-    margin: 0.75rem 0 0;
-    color: var(--text);
+    background: var(--color-button-primary);
+    color: var(--color-bg);
 }
 
 .debt-item-progress-text {
     margin: 0.75rem 0 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
@@ -470,37 +493,14 @@ nav a:hover {
     height: 0.45rem;
     margin-top: 0.5rem;
     border-radius: 999px;
-    background: var(--card-border);
+    background: var(--color-card-border);
 }
 
 .debt-item-progress-fill {
     width: 0%;
     height: 100%;
     border-radius: 999px;
-    background: var(--accent-green);
-}
-
-
-/*Dashboard*/
-.dashboard-stats {
-    margin: 1.5rem 0;
-}
-
-.payments-history {
-    margin-top: 2rem;
-}
-
-.stat-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    padding: 1rem;
-}
-
-.dashboard-stats {
-    display: grid;
-    gap: 0.75rem;
-    margin: 1.5rem 0;
+    background: var(--color-positive);
 }
 
 .nav-shell {
@@ -510,7 +510,7 @@ nav a:hover {
 .nav-label {
     margin: 0 0 0.5rem;
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
@@ -526,7 +526,7 @@ nav a:hover {
     display: block;
     width: 1.25rem;
     height: 2px;
-    background: var(--accent-green);
+    background: var(--color-positive);
     position: relative;
 }
 
@@ -537,7 +537,7 @@ nav a:hover {
     left: 0;
     width: 1.25rem;
     height: 2px;
-    background: var(--accent-green);
+    background: var(--color-positive);
 }
 
 .menu-icon::before {
@@ -548,23 +548,19 @@ nav a:hover {
     top: 0.35rem;
 }
 
+/*Dashboard*/
 
-.dashboard-hero {
-    background: var(--card-accent-bg-green);
+.stat-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
+    padding: 1rem;
 }
 
-.dashboard-hero p {
-    margin: 0;
-}
-
-.dashboard-hero-amount {
-    margin-top: 0.75rem;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
+.dashboard-stats {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
 }
 
 .dashboard-hero-actions {
@@ -585,37 +581,21 @@ nav a:hover {
 }
 
 .dashboard-hero-actions a:first-child {
-    background: var(--button-primary);
+    background: var(--color-button-primary);
     color: #0f1115;
 }
 
 .dashboard-hero-actions a:last-child {
     background: rgba(0, 0, 0, 0.18);
-    color: var(--text);
+    color: var(--color-text);
 }
 
 /*Simulator*/
-.simulator-input-card {
-    background: var(--bg-card);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    margin-bottom: 1.5rem;
-}
-
-.simulator-input-card label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 0.35rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-}
 
 .simulator-card-header {
     display: flex;
     align-items: flex-start;
     gap: 0.9rem;
-    margin-bottom: 1rem;
 }
 
 .simulator-card-header h3 {
@@ -624,19 +604,7 @@ nav a:hover {
 
 .simulator-card-header p {
     margin: 0.35rem 0 0;
-    color: var(--text-muted);
-}
-
-.simulator-slider-value {
-    margin: 0 0 0.35rem;
-    color: var(--accent-green-light);
-    font-weight: 600;
-}
-
-.simulator-input-card input[type="range"] {
-    width: 100%;
-    margin: 0 0 0.75rem;
-    accent-color: var(--accent-green);
+    color: var(--color-text-muted);
 }
 
 .simulator-status {
@@ -650,52 +618,17 @@ nav a:hover {
 }
 
 .simulator-result-section {
-    background: var(--bg-card);
-    border: 1px solid var(--card-border);
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
     padding: 1.25rem;
-}
-
-.simulator-result-panel h3 {
-    margin-bottom: 1rem;
-}
-
-.simulator-result-card {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius);
-    padding: 1rem;
-    margin-bottom: 1rem;
-}
-
-.simulator-result-label {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-}
-
-.simulator-result-amount {
-    margin: 0.5rem 0 0;
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--text-primary);
 }
 
 .simulator-highlight-card {
-    background: var(--card-accent-bg-green);
+    background: var(--gradient-primary);
     border-radius: var(--radius);
     padding: 1.25rem;
-    color: var(--text-secondary);
-}
-
-.simulator-highlight-amount {
-    margin: 0.5rem 0 0;
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--text-primary);
+    color: var(--color-text-dark);
 }
 
 .simulator-highlight-meta {
@@ -708,7 +641,7 @@ nav a:hover {
 .simulator-highlight-meta-value {
     margin: 0.35rem 0 0;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--color-text);
 }
 
 .simulator-info-card {
@@ -723,51 +656,26 @@ nav a:hover {
 
 .simulator-info-card p {
     margin: 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
 }
 
 .simulator-info-card svg {
     flex-shrink: 0;
     margin-top: 0.1rem;
-    color: var(--accent-green-light);
+    color: var(--color-positive);
 }
 
 /*Learn*/
-.learn-hero p:last-child {
-    max-width: 34ch;
-    color: var(--text-muted);
-    line-height: 1.2rem;
-}
 
-.learn-calculator-card,
-.learn-insight-card,
-.learn-locked-card {
-    background: var(--bg-card);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius);
-    padding: 1rem;
-}
-
-.learn-calculator-card,
 .learn-insight-card {
     margin-bottom: 1.5rem;
 }
 
-.learn-level-card {
-    margin-bottom: 1rem;
-}
-
 .learn-module-card {
-    background: var(--bg-card);
-    border: 1px solid var(--card-border);
+    background: var(--color-surface);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
     padding: 1rem;
-}
-
-.learn-modules-list {
-    display: grid;
-    gap: 1rem;
-    margin-top: 1rem;
 }
 
 .learn-module-card h4 {
@@ -775,22 +683,21 @@ nav a:hover {
 }
 
 .learn-module-card p {
-    margin-bottom: 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
 }
 
 .learn-featured-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--card-border);
+    border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
-    margin-bottom: 2rem;
-    min-height: 24rem;
+    margin-bottom: 1.5rem;
+    min-height: 20rem;
 }
 
-.learn-featured-card h3,
+.learn-featured-card h2,
 .learn-featured-card p {
-    color: var(--text);
+    color: var(--color-text);
 }
 
 .learn-featured-image {
@@ -810,32 +717,19 @@ nav a:hover {
             rgba(11, 16, 32, 0.08) 0%,
             rgba(11, 16, 32, 0.72) 55%,
             rgba(11, 16, 32, 0.92) 100%);
+    padding: 0.5rem;
 }
 
 .learn-featured-overlay h2 {
     margin: 0;
     max-width: 30ch;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .learn-featured-overlay p {
     max-width: 30ch;
     margin: 0.75rem 0 1rem;
     color: rgba(249, 250, 251, 0.9);
-}
-
-.learn-level-header,
-.learn-section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-}
-
-.learn-section-header p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.875rem;
 }
 
 .learn-featured-action {
@@ -847,48 +741,8 @@ nav a:hover {
     padding: 0.75rem 1rem;
     border-radius: var(--radius);
     background: rgba(255, 255, 255, 0.75);
-    color: var(--bg);
+    color: var(--color-bg);
     font-weight: 600;
-}
-
-.learn-calculator-header {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.learn-calculator-card h3 {
-    margin: 0.2rem 0 0;
-}
-
-.learn-calculator-card>p {
-    color: var(--text-muted);
-}
-
-.learn-calculator-card label {
-    margin-top: 0.5rem;
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.learn-calculator-card input[type="range"] {
-    width: 100%;
-    margin: 0.35rem 0 0.75rem;
-    accent-color: var(--accent-green);
-}
-
-.learn-calculator-card label+p {
-    margin: 0.25rem 0 0;
-    color: var(--accent-green-light);
-    font-weight: 600;
-}
-
-.learn-calculator-result {
-    margin-top: 1.25rem;
-    padding: 1rem;
-    border-radius: var(--radius);
-    background: var(--card-accent-bg-green);
 }
 
 .learn-calculator-result p {
@@ -908,7 +762,7 @@ nav a:hover {
 
 .learn-slider-hint {
     margin: 0.5rem 0 0;
-    color: var(--text-muted);
+    color: var(--color-text-muted);
     font-size: 0.875rem;
 }
 
@@ -939,6 +793,7 @@ nav a:hover {
 
     .home-hero-actions {
         grid-template-columns: repeat(2, max-content);
+        gap: 1.5rem;
         align-items: center;
     }
 
@@ -955,23 +810,6 @@ nav a:hover {
         min-width: 12rem;
     }
 
-    .home-featured-card {
-        min-height: 30rem;
-    }
-
-    .home-featured-overlay {
-        padding: 2rem;
-    }
-
-    .home-featured-overlay h3 {
-        max-width: 10ch;
-        font-size: 2rem;
-    }
-
-    .home-featured-overlay p {
-        max-width: 34ch;
-    }
-
     .home-value-list {
         grid-template-columns: repeat(3, 1fr);
         align-items: start;
@@ -984,13 +822,13 @@ nav a:hover {
 
 @media (min-width: 760px) {
 
-    header,
-    main {
-        width: min(100%, 70rem);
-    }
-
     nav a {
         padding: 0.25rem 0.5rem;
+    }
+
+    .base-card {
+        margin-top: 0;
+        min-height: 100%;
     }
 
     .simulator-results {
@@ -1002,19 +840,12 @@ nav a:hover {
     }
 
     .home-hero-title {
-        max-width: 9ch;
-        font-size: clamp(3.5rem, 7vw, 5.5rem);
+        font-size: 4rem;
     }
 
     .home-lead {
-        max-width: 34ch;
-        font-size: 1.1rem;
-    }
-
-    .home-hero-actions {
-        grid-template-columns: repeat(2, max-content);
-        gap: 1.25rem;
-        align-items: center;
+        max-width: 50ch;
+        font-size: 1.3rem;
     }
 
     .home-primary-action {
@@ -1023,10 +854,6 @@ nav a:hover {
 
     .home-secondary-action {
         min-width: auto;
-    }
-
-    .learn-featured-overlay {
-        padding: 2rem;
     }
 
     .learn-featured-overlay h2 {
@@ -1051,11 +878,6 @@ nav a:hover {
         margin-top: 1.5rem;
     }
 
-    .learn-calculator-card {
-        margin-top: 0;
-        min-height: 100%;
-    }
-
     .simulator-layout-grid {
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
@@ -1063,8 +885,4 @@ nav a:hover {
         align-items: start;
     }
 
-    .simulator-input-card,
-    .simulator-result-panel {
-        margin: 0;
-    }
 }

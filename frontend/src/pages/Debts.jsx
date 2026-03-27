@@ -59,10 +59,10 @@ export const Debts = () => {
             <h2><LuWallet /> Mina skulder</h2>
 
             <div className="debt-list">
-                <section className="debts-summary-card">
-                    <p className="debts-summary-label">Totalt att betala</p>
-                    <p className="debts-summary-amount">{formatCurrency(debts.reduce((sum, debt) => sum + Number(debt.totalAmount), 0))}</p>
-                    <p className="debts-summary-meta">{debts.length} aktiva skulder</p>
+                <section className="debts-summary-card surface-positive">
+                    <p className="card-label">Totalt att betala</p>
+                    <p className="debts-summary-amount card-amount">{formatCurrency(debts.reduce((sum, debt) => sum + Number(debt.totalAmount), 0))}</p>
+                    <p className="debts-summary-meta card-meta">{debts.length} aktiva skulder</p>
                 </section>
                 <div className="debts-section-header">
                     <h3>Aktiva skulder</h3>
@@ -101,7 +101,7 @@ export const Debts = () => {
                     )
                 }
             </div >
-            <section className="debt-form-section">
+            <section className="debt-form-section surface-learning">
                 <h3>Lägg till en ny skuld</h3>
                 <p>Fyll i uppgifterna så får du bättre koll direkt.</p>
                 <form onSubmit={handleSubmit}>
