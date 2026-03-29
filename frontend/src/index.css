@@ -169,10 +169,6 @@ nav a:hover {
     background: transparent;
 }
 
-.auth-link {
-    margin-top: 1rem;
-}
-
 .back-link {
     display: inline-flex;
     margin-bottom: 1rem;
@@ -798,6 +794,36 @@ form button {
     font-size: 0.875rem;
 }
 
+/* Login */
+.auth-page {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.auth-panel {
+    max-width: 32rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background:
+        var(--gradient-radial),
+        linear-gradient(180deg,
+            var(--color-overlay-medium) 0%,
+            var(--color-overlay-soft) 100%);
+    border: 1px solid var(--color-card-border);
+    box-shadow: 0 14px 32px var(--color-card-highlight);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.auth-link {
+    margin-top: 1rem;
+}
+
+.auth-error {
+    margin-top: 1rem;
+    color: var(--color-text-muted);
+}
+
 @media (min-width: 480px) {
 
     header,
@@ -932,6 +958,11 @@ form button {
     .debt-form-section {
         position: sticky;
         top: 1rem;
+    }
+
+    .auth-page {
+        min-height: 70vh;
+        align-content: center;
     }
 
 }
