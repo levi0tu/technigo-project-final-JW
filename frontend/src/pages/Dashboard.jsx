@@ -42,8 +42,8 @@ export const Dashboard = () => {
                     </p>
                 </div>
                 <div className="dashboard-hero-actions">
-                    <Link to="/debts">Lägg till skuld</Link>
-                    <Link to="/debts">Visa skulder</Link>
+                    <Link className="button button-primary" to="/debts">Lägg till skuld</Link>
+                    <Link className="button button-outlined" to="/debts">Visa skulder</Link>
                 </div>
             </section>
             <div className="dashboard-stats">
@@ -54,7 +54,7 @@ export const Dashboard = () => {
                     <p>Antal betalningar: {dashboardData?.paymentCount}</p>
                 </div>
             </div>
-            <button onClick={handleLogout}>Logga ut</button>
+            <button className="button button-primary" onClick={handleLogout}>Logga ut</button>
         </Layout>
     )
 }

@@ -69,7 +69,7 @@ export const Login = () => {
                     required
                     autoComplete="current-password"
                 />
-                <button disabled={isLoading}>
+                <button className="button button-primary" disabled={isLoading}>
                     {isLoading ? "Loggar in..." : "Logga in"}
                 </button>
             </form>

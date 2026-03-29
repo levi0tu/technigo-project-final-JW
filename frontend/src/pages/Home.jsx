@@ -19,10 +19,10 @@ export const Home = () => {
                     Ta kontroll över din ekonomi med smarta verktyg för bättre kontroll i vardagen.
                 </p>
                 <div className="home-hero-actions">
-                    <Link className="home-primary-action" to="/login">
+                    <Link className="button button-primary" to="/login">
                         Logga in
                     </Link>
-                    <Link className="home-secondary-action" to="/register">
+                    <Link className="button button-outlined" to="/register">
                         Registrera konto
                     </Link>
                 </div>
@@ -65,7 +65,7 @@ export const Home = () => {
                 <h3>Redo att växla upp?</h3>
                 <p>Börja med att skapa konto eller testa simulatorn och se hur små val påverkar din ekonomi.
                 </p>
-                <Link className="home-primary-action" to="/register">
+                <Link className="button button-outlined" to="/register">
                     Kom igång nu
                 </Link>
             </section>

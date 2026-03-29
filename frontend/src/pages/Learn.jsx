@@ -127,7 +127,7 @@ export const Learn = () => {
                         value={compoundFormData.years}
                         onChange={handleCompoundChange}
                     />
-                    <div className="learn-calculator-result surface-positive">
+                    <div className="learn-calculator-result surface-data">
                         <p>Totalt spar-belopp efter {compoundFormData.years} år</p>
                         <h4>{formatCurrency(Math.round(futureValue))} kr</h4>
                     </div>
