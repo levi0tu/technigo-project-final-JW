@@ -794,7 +794,7 @@ form button {
     font-size: 0.875rem;
 }
 
-/* Login */
+/* Login och register */
 .auth-page {
     display: grid;
     gap: 1.5rem;
