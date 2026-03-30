@@ -28,7 +28,8 @@ export const Home = () => {
                 </div>
             </section>
 
-            <section className="home-value-section">
+            <section
+                className="home-value-section">
                 <h3>Din finansiella fristad.</h3>
                 <p>
                     Vi har byggt Växla Upp för att göra det lättare att förstå

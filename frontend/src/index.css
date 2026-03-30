@@ -103,17 +103,20 @@ label {
 input {
     width: 100%;
     border: 1px solid var(--color-card-border);
-    border-radius: 1rem;
+    border-radius: var(--radius);
     padding: 0.875rem 1rem;
     background: var(--color-surface);
     color: var(--color-text);
-    margin-bottom: 0.75rem;
 }
 
-input:focus {
+i input:focus {
     outline: none;
     border-color: var(--color-positive);
     box-shadow: 0 0 0 3px var(--color-card-highlight);
+}
+
+input[type="range"] {
+    accent-color: var(--color-data);
 }
 
 form {
@@ -163,12 +166,6 @@ nav a:hover {
     background: var(--color-card-highlight);
 }
 
-.menu-toggle {
-    width: auto;
-    padding: 0.6rem 1rem;
-    background: transparent;
-}
-
 .back-link {
     display: inline-flex;
     margin-bottom: 1rem;
@@ -203,8 +200,12 @@ nav a:hover {
 }
 
 .learning-card {
-    background: var(--gradient-tertiary);
-    border: 1px solid var(--color-card-border);
+    background:
+        var(--gradient-radial),
+        linear-gradient(180deg,
+            rgba(112, 0, 255, 0.12) 0%,
+            rgba(69, 0, 160, 0.18) 100%);
+    border: 1px solid var(--color-learning-border);
     border-radius: var(--radius);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
@@ -239,25 +240,48 @@ nav a:hover {
 }
 
 .surface-positive {
-    background: var(--gradient-primary);
+    background: var(--gradient-radial),
+        linear-gradient(180deg,
+            rgba(0, 255, 157, 0.16) 0%,
+            rgba(18, 83, 64, 0.28) 62%,
+            var(--color-bg-overlay-light) 100%);
+    border: 1px solid rgba(0, 255, 157, 0.14);
     color: var(--color-text);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 5px 8px rgba(0, 255, 157, 0.08);
 }
 
 .surface-data {
-    background: var(--gradient-linear-blue);
-    border: 1px solid var(--color-learning-soft);
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(0, 209, 255, 0.18) 0%, rgba(0, 111, 136, 0.22) 38%, rgba(16, 34, 54, 0.92) 100%);
+    border: 1px solid rgba(0, 209, 255, 0.16);
     color: var(--color-text);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 5px 8px rgba(0, 209, 255, 0.08);
 }
 
 .surface-learning {
     background: linear-gradient(180deg, rgba(112, 0, 255, 0.14) 0%, rgba(69, 0, 160, 0.22) 100%);
     border: 1px solid var(--color-learning-border);
     color: var(--color-text);
+
 }
 
 .dashboard-hero {
-    max-width: 20rem;
-    margin-bottom: 1rem;
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 24rem;
+}
+
+.debts-summary-card2 {
+    padding: 1.25rem;
+    margin: 1rem 0 1.5rem;
+    background: var(--gradient-radial);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 10px #7000ff;
 }
 
 .debts-summary-card {
@@ -265,7 +289,7 @@ nav a:hover {
     margin: 1rem 0 1.5rem;
     background: var(--gradient-radial);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 20px rgba(0, 255, 157, 0.493);
+    box-shadow: 0 8px 10px #00ff9d7e;
 }
 
 .learn-calculator-result {
@@ -273,7 +297,6 @@ nav a:hover {
     padding: 1rem;
     border-radius: var(--radius);
 }
-
 
 /*Icons*/
 .value-icon {
@@ -315,7 +338,7 @@ nav a:hover {
     align-items: center;
     max-height: 2rem;
     padding: 0.85rem 1rem;
-    border-radius: var(--radius);
+    border-radius: var(--radius-xs);
     font-weight: 550;
     text-decoration: none;
     border: 1px solid transparent;
@@ -394,12 +417,16 @@ form button {
     line-height: 1.5;
 }
 
-.simulator-result-section,
 .home-value-section {
     padding: 1.25rem;
     margin-bottom: 1.5rem;
-    background: var(--color-card-highlight);
+    background:
+        var(--gradient-radial),
+        linear-gradient(180deg,
+            var(--color-overlay-medium) 0%,
+            var(--color-overlay-soft) 100%);
     border-radius: var(--radius);
+    border: 1px solid var(--color-card-border);
 }
 
 .home-value-section>p {
@@ -431,6 +458,7 @@ form button {
     padding: 1.25rem;
     background: var(--color-card-bg);
     border-radius: var(--radius);
+    border: 1px solid var(--color-card-border);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -449,7 +477,7 @@ form button {
     margin-right: auto;
 }
 
-/*Debts page*/
+/*Debts & DebtDetail*/
 .debts-layout-grid {
     display: grid;
     gap: 2rem;
@@ -570,6 +598,23 @@ form button {
     border: 1px solid var(--color-button-primary);
 }
 
+.payments-history {
+    margin-top: 1.5rem;
+}
+
+.payment-history-list {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.payment-history-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
 /*Hamburgermeny*/
 .menu-icon {
     display: block;
@@ -597,6 +642,13 @@ form button {
     top: 0.35rem;
 }
 
+.menu-toggle {
+    width: auto;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: none;
+}
+
 /*Dashboard*/
 
 .stat-card {
@@ -608,14 +660,33 @@ form button {
 
 .dashboard-stats {
     display: grid;
-    gap: 0.75rem;
+    gap: 1rem;
     margin: 1.5rem 0;
+}
+
+.stat-card {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.dashboard-footer-actions {
+    margin-top: 2rem;
 }
 
 .dashboard-hero-actions {
     display: grid;
     gap: 1rem;
     margin-top: 1rem;
+}
+
+.dashboard-summary {
+    border-radius: var(--radius);
+}
+
+.dashboard-hero-amount {
+    margin-top: 0.75rem;
 }
 
 /*Simulator*/
@@ -650,13 +721,7 @@ form button {
     border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
     padding: 1.25rem;
-}
-
-.simulator-highlight-card {
-    background: var(--gradient-primary);
-    border-radius: var(--radius);
-    padding: 1.25rem;
-    color: var(--color-text-dark);
+    margin-top: 1rem;
 }
 
 .simulator-highlight-meta {
@@ -685,6 +750,7 @@ form button {
 .simulator-info-card p {
     margin: 0;
     color: var(--color-text-muted);
+    line-height: 1.2;
 }
 
 .simulator-info-card svg {
@@ -696,22 +762,48 @@ form button {
 /*Learn*/
 
 .learn-insight-card {
+    display: none;
+}
+
+.learn-insight-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.learn-insight-header .value-icon {
+    margin-bottom: 0;
+}
+
+.learn-main-column {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+}
+
+.learn-calculator {
     margin-bottom: 1.5rem;
 }
 
 .learn-module-card {
-    background: var(--color-surface);
+    background: linear-gradient(180deg,
+            var(--color-overlay-medium) 50%,
+            var(--color-overlay-soft) 100%);
     border: 1px solid var(--color-card-border);
     border-radius: var(--radius);
-    padding: 1rem;
+    padding: 1.25rem;
+    min-height: 10rem;
 }
 
 .learn-module-card h4 {
     margin: 0;
+    line-height: 1.2;
 }
 
 .learn-module-card p {
     color: var(--color-text-muted);
+    line-height: 1.4;
 }
 
 .learn-featured-card {
@@ -741,11 +833,14 @@ form button {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background: linear-gradient(180deg,
-            rgba(11, 16, 32, 0.08) 0%,
-            rgba(11, 16, 32, 0.72) 55%,
-            rgba(11, 16, 32, 0.92) 100%);
-    padding: 0.5rem;
+    background:
+        linear-gradient(180deg,
+            rgba(11, 16, 32, 0.16) 0%,
+            rgba(11, 16, 32, 0.78) 48%,
+            rgba(11, 16, 32, 0.96) 100%);
+    padding: 0.8rem;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .learn-featured-overlay h2 {
@@ -784,6 +879,13 @@ form button {
     line-height: 1;
 }
 
+.learn-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
 .learn-modules-slider {
     margin-top: 1rem;
 }
@@ -792,6 +894,14 @@ form button {
     margin: 0.5rem 0 0;
     color: var(--color-text-muted);
     font-size: 0.875rem;
+}
+
+.learn-section-title .value-icon {
+    margin-bottom: 0;
+}
+
+.learn-section-title h3 {
+    margin: 0;
 }
 
 /* Login och register */
@@ -804,8 +914,7 @@ form button {
     max-width: 32rem;
     padding: 1.5rem;
     border-radius: var(--radius);
-    background:
-        var(--gradient-radial),
+    background: var(--gradient-radial),
         linear-gradient(180deg,
             var(--color-overlay-medium) 0%,
             var(--color-overlay-soft) 100%);
@@ -853,14 +962,6 @@ form button {
         grid-template-columns: repeat(2, max-content);
         gap: 1.5rem;
         align-items: center;
-    }
-
-    .dashboard-hero-actions {
-        grid-template-columns: repeat(2, max-content);
-    }
-
-    .dashboard-hero-actions a {
-        padding: 1rem;
     }
 
     .home-primary-action,
@@ -933,13 +1034,14 @@ form button {
     }
 
     .learn-insight-card {
-        margin-top: 1.5rem;
+        display: block;
+        margin: 0;
     }
 
     .simulator-layout-grid {
         display: grid;
         grid-template-columns: 0.95fr 1.05fr;
-        gap: 1.5rem;
+        gap: 3rem;
         align-items: start;
     }
 
@@ -965,4 +1067,12 @@ form button {
         align-content: center;
     }
 
+    .dashboard-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-width: 42rem;
+    }
+
+    .dashboard-hero-actions {
+        grid-template-columns: repeat(2, max-content);
+    }
 }

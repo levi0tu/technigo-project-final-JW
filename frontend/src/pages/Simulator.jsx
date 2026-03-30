@@ -95,12 +95,12 @@ export const Simulator = () => {
                     <h3>Resultatjämförelse</h3>
 
                     <div className="simulator-results">
-                        <div className="simulator-cash-card base-card">
+                        <div className="surface-positive">
                             <p className="card-label">Direktköp</p>
                             <p className="simulator-result-amount card-amount">{formatCurrency(formData.cashPrice)} kr</p>
                             {difference > 0 && (<p className="simulator-status simulator-status--good">Lägre totalkostnad</p>)}
                         </div>
-                        <div className="simulator-highlight-card surface-positive">
+                        <div className="surface-data">
                             <p className="card-label">Total kostnad vid delbetalning</p>
                             <p className="simulator-highlight-amount card-amount">{formatCurrency(installmentTotal)} kr</p>
                         </div>

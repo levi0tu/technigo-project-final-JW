@@ -4,7 +4,8 @@ import { Layout } from "../components/Layout"
 import { getLessons } from "../services/lessonService"
 import featuredImage from "../images/pexels-serhii-barkanov-2144469453-35382218.jpg"
 import { formatCurrency } from "../utility/formatCurrency.js"
-import { BsGraphUpArrow } from "react-icons/bs";
+import { BsGraphUpArrow, BsLightbulb } from "react-icons/bs";
+import { LuBookOpen } from "react-icons/lu"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 
@@ -59,23 +60,36 @@ export const Learn = () => {
             </section>
 
             <section className="learn-desktop-grid">
-                <section className="learn-featured-card">
-                    <img
-                        src={featuredImage}
-                        alt="ränta"
-                        className="learn-featured-image"
-                    />
-                    <div className="learn-featured-overlay">
-                        <p className="learn-card-tag">Utvald lektion</p>
-                        <h2>Ränta, hur påverkar den ditt köp?</h2>
-                        <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
-                        <Link className="learn-featured-action" to="/simulator">
-                            Räkna på ditt köp
-                        </Link>
-                    </div>
-                </section>
+                <div className="learn-main-column">
+                    <section className="learn-featured-card">
+                        <img
+                            src={featuredImage}
+                            alt="green leaves"
+                            className="learn-featured-image"
+                        />
+                        <div className="learn-featured-overlay">
+                            <h2>Ränta, hur påverkar den ditt köp?</h2>
+                            <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
+                            <Link className="learn-featured-action" to="/simulator">
+                                Räkna på ditt köp
+                            </Link>
+                        </div>
+                    </section>
 
-                <section className="base-card">
+                    <section className="learn-insight-card learning-card">
+                        <div className="learn-insight-header">
+                            <div className="value-icon value-icon-purple">
+                                <BsLightbulb />
+                            </div>
+                            <p className="card-label">Dagens insikt</p>
+                        </div>
+                        <p className="learn-insight-text">Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
+                            så behåller du kontrollen.
+                        </p>
+                    </section>
+                </div>
+
+                <section className="learn-calculator base-card">
                     <div className="value-icon value-icon-cyan"><BsGraphUpArrow /></div>
                     <h3>Ränta på ränta-kalkylator</h3>
                     <p>Se hur ditt sparande växer över tid.</p>
@@ -134,15 +148,13 @@ export const Learn = () => {
                 </section>
             </section>
 
-            <section className="learn-insight-card learning-card">
-                <p className="learn-card-tag">Dagens insikt</p>
-                <p>Små kostnader blir stora snabbare än man tror. Förstå räntan tidigt,
-                    så behåller du kontrollen.
-                </p>
-            </section>
-
             <section className="learn-modules-section">
-                <h3>Tips</h3>
+                <div className="learn-section-title">
+                    <div className="value-icon value-icon-purple">
+                        <LuBookOpen />
+                    </div>
+                    <h3>Tips</h3>
+                </div>
                 <p className="learn-slider-hint">Svep för att se fler tips →</p>
                 <Swiper
                     spaceBetween={16}

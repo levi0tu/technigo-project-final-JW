@@ -5,6 +5,7 @@ import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
 import { AuthContext } from "../context/AuthContext"
 import { formatCurrency } from "../utility/formatCurrency.js"
+import { useLocation } from "react-router-dom"
 
 export const Debts = () => {
     const [debts, setDebts] = useState([])
@@ -16,7 +17,7 @@ export const Debts = () => {
         monthlyPayment: "",
         interestRate: "",
     })
-
+    const location = useLocation()
     useEffect(() => {
         if (!user) return
 
@@ -52,6 +53,16 @@ export const Debts = () => {
             interestRate: "",
         })
     }
+
+    useEffect(() => {
+        if (isLoading) return
+        if (!location.hash) return
+
+        const element = document.querySelector(location.hash)
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" })
+        }
+    }, [location.hash, isLoading, debts])
 
     return (
         <Layout>
@@ -110,7 +121,7 @@ export const Debts = () => {
                     </div>
                 </div >
 
-                <section className="debt-form-section surface-learning">
+                <section id="debt-form" className="debt-form-section surface-learning">
                     <h3>Lägg till en ny skuld</h3>
                     <p>Fyll i uppgifterna så får du bättre koll direkt.</p>
                     <form onSubmit={handleSubmit}>
@@ -150,7 +161,7 @@ export const Debts = () => {
                             onChange={handleChange}
                             required
                         />
-                        <button className="button button-inverted">Lägg till skuld</button>
+                        <button className="button button-primary">Lägg till skuld</button>
 
                     </form>
                 </section>

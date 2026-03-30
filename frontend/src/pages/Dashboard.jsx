@@ -4,6 +4,7 @@ import { Layout } from "../components/Layout"
 import { AuthContext } from "../context/AuthContext"
 import { getDashboardData } from "../services/dashboardService"
 import { formatCurrency } from "../utility/formatCurrency.js"
+import { LuReceiptText, LuWalletCards } from "react-icons/lu"
 
 export const Dashboard = () => {
     const { user, setUser, setIsLoggedIn } = useContext(AuthContext)
@@ -35,26 +36,43 @@ export const Dashboard = () => {
             </section>
 
             <section className="dashboard-hero base-card">
-                <div className="surface-positive">
-                    <p className="dashboard-hero card-label">Din skuldöversikt</p>
-                    <p className="dashboard-hero-amount">
+                <div className="dashboard-summary surface-data">
+                    <p className="card-label">Din skuldöversikt</p>
+                    <p className="dashboard-hero-amount card-amount">
                         {formatCurrency(dashboardData?.totalDebtAmount)} kr
+                    </p>
+                    <p className="card-meta">
+                        {dashboardData?.debtCount ?? 0} skulder registrerade
                     </p>
                 </div>
                 <div className="dashboard-hero-actions">
-                    <Link className="button button-primary" to="/debts">Lägg till skuld</Link>
+                    <Link className="button button-primary" to="/debts#debt-form">Lägg till skuld</Link>
                     <Link className="button button-outlined" to="/debts">Visa skulder</Link>
                 </div>
             </section>
-            <div className="dashboard-stats">
+
+            <section className="dashboard-stats">
                 <div className="stat-card">
-                    <p>Antal skulder: {dashboardData?.debtCount}</p>
+                    <div className="value-icon value-icon-cyan">
+                        <LuWalletCards />
+                    </div>
+                    <p className="card-label">Antal skulder</p>
+                    <p className="card-amount"> {dashboardData?.debtCount ?? 0}</p>
+                    <p className="card-meta">Aktiva poster registrerade</p>
                 </div>
+
                 <div className="stat-card">
-                    <p>Antal betalningar: {dashboardData?.paymentCount}</p>
+                    <div className="value-icon value-icon-teal">
+                        <LuReceiptText />
+                    </div>
+                    <p className="card-label">Antal betalningar</p>
+                    <p className="card-amount">{dashboardData?.paymentCount ?? 0}</p>
+                    <p className="card-meta">Genomförda betalningar</p>
                 </div>
+            </section>
+            <div className="dashboard-footer-actions">
+                <button className="button button-outlined" onClick={handleLogout}>Logga ut</button>
             </div>
-            <button className="button button-primary" onClick={handleLogout}>Logga ut</button>
         </Layout>
     )
 }
