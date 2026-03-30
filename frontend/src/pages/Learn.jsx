@@ -70,7 +70,7 @@ export const Learn = () => {
                         <div className="learn-featured-overlay">
                             <h2>Ränta, hur påverkar den ditt köp?</h2>
                             <p>Lär dig hur små ekonomiska beslut växer över tid och hur du kan fatta smartare val direkt.</p>
-                            <Link className="learn-featured-action" to="/simulator">
+                            <Link className="button button-inverted" to="/simulator">
                                 Räkna på ditt köp
                             </Link>
                         </div>
