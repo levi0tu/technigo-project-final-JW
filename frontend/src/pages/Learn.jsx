@@ -159,6 +159,14 @@ export const Learn = () => {
                 <Swiper
                     spaceBetween={16}
                     slidesPerView={1.2}
+                    breakpoints={{
+                        760: {
+                            slidesPerView: 2.1,
+                        },
+                        1100: {
+                            slidesPerView: 2.4,
+                        },
+                    }}
                     className="learn-modules-slider"
                 >
                     {lessons.map((lesson) => (

@@ -48,43 +48,42 @@ export const Register = () => {
                             Skapa ett konto för att få full överblick över dina skulder</p>
                     </section>
 
-                    <section className="base-card">
-                        <form onSubmit={handleSubmit}>
-                            <label htmlFor="name">Namn</label>
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                autoComplete="name"
-                            />
-                            <label htmlFor="email">E-post</label>
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                autoComplete="email"
-                            />
-                            <label htmlFor="password">Lösenord</label>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                                autoComplete="new-password"
-                            />
-                            <button className="button button-primary" disabled={isLoading}>
-                                {isLoading ? "Skapar konto..." : "Skapa konto"}
-                            </button>
-                        </form>
-                    </section>
+
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="name">Namn</label>
+                        <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            autoComplete="name"
+                        />
+                        <label htmlFor="email">E-post</label>
+                        <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                            autoComplete="email"
+                        />
+                        <label htmlFor="password">Lösenord</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                            autoComplete="new-password"
+                        />
+                        <button className="button button-primary" disabled={isLoading}>
+                            {isLoading ? "Skapar konto..." : "Skapa konto"}
+                        </button>
+                    </form>
                     {message && <p>{message}</p>}
                     <div className="auth-link">
                         <Link to="/login">Har du redan ett konto? Klicka här för att logga in.</Link>
