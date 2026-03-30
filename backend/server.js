@@ -7,6 +7,8 @@ import { User } from "./models/User.js"
 import { Debt } from "./models/Debt.js"
 import { Payment } from "./models/Payment.js"
 import { Lesson } from "./models/Lesson.js"
+import bcrypt from "bcryptjs"
+
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
 mongoose.connect(mongoUrl)
@@ -43,10 +45,13 @@ app.post("/register", async (req, res) => {
       return
     }
 
+    const salt = bcrypt.genSaltSync()
+    const hashedPassword = bcrypt.hashSync(password, salt)
+
     const newUser = new User({
       name,
       email,
-      password,
+      password: hashedPassword,
     })
 
     await newUser.save()
@@ -74,10 +79,14 @@ app.post("/login", async (req, res) => {
     res.status(404).json({ message: "Användaren finns inte" })
     return
   }
-  if (user.password !== password) {
+
+  const isPasswordCorrect = bcrypt.compareSync(password, user.password)
+
+  if (!isPasswordCorrect) {
     res.status(401).json({ message: "Fel lösenord" })
     return
   }
+
   res.json({
     message: "Inloggning lyckades",
     user: {
