@@ -184,18 +184,6 @@ app.get("/lessons", async (req, res) => {
   res.json(lessons)
 })
 
-app.post("/lessons", async (req, res) => {
-  const { title, content } = req.body
-  const newLesson = new Lesson({
-    title,
-    content,
-  })
-
-  await newLesson.save()
-
-  res.status(201).json(newLesson)
-})
-
 app.patch("/debts/:id", async (req, res) => {
   const updatedDebt = await Debt.findByIdAndUpdate(
     req.params.id,
