@@ -14,7 +14,7 @@ export const Dashboard = () => {
         if (!user) return
 
         const fetchDachboardData = async () => {
-            const data = await getDashboardData(user.id)
+            const data = await getDashboardData()
             setDashboardData(data)
         }
 
@@ -23,6 +23,7 @@ export const Dashboard = () => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
+        localStorage.removeItem("token")
         setIsLoggedIn(false)
         setUser(null)
         navigate("/login")

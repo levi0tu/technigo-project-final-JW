@@ -8,6 +8,8 @@ import { Debt } from "./models/Debt.js"
 import { Payment } from "./models/Payment.js"
 import { Lesson } from "./models/Lesson.js"
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+
 
 
 const mongoUrl = process.env.MONGO_URL || "mongodb://localhost/final-project"
@@ -20,9 +22,30 @@ mongoose.Promise = Promise
 const port = process.env.PORT || 8080
 const app = express()
 
+const jwtSecret = process.env.JWT_SECRET
+
 // Add middlewares to enable cors and json body parsing
 app.use(cors())
 app.use(express.json())
+
+const authenticateUser = (req, res, next) => {
+  const authHeader = req.header("Authorization")
+
+  if (!authHeader) {
+    res.status(401).json({ message: "Ingen token skickades med" })
+    return
+  }
+
+  const token = authHeader.replace("Bearer ", "")
+
+  try {
+    const decoded = jwt.verify(token, jwtSecret)
+    req.user = decoded
+    next()
+  } catch (error) {
+    res.status(401).json({ message: "Ogiltig token" })
+  }
+}
 
 // Start defining your routes here
 // http://localhost:8080/
@@ -86,9 +109,14 @@ app.post("/login", async (req, res) => {
     res.status(401).json({ message: "Fel lösenord" })
     return
   }
+  const token = jwt.sign(
+    { id: user._id, email: user.email },
+    jwtSecret, { expiresIn: "7d" }
 
+  )
   res.json({
     message: "Inloggning lyckades",
+    token,
     user: {
       id: user._id,
       name: user.name,
@@ -170,8 +198,9 @@ app.get("/payments/:debtId", async (req, res) => {
   res.json(payments)
 })
 
-app.get("/dashboard", async (req, res) => {
-  const { userId } = req.query
+app.get("/dashboard", authenticateUser, async (req, res) => {
+  const userId = req.user.id
+
   const debtCount = await Debt.countDocuments({ userId })
   const userDebts = await Debt.find({ userId })
   const totalDebtAmount = userDebts.reduce(
