@@ -95,7 +95,7 @@ export const DebtDetail = () => {
                         value={paymentFormData.paymentDate}
                         onChange={handlePaymentChange}
                     />
-                    <button className="button button-inverted">Registrera betalning</button>
+                    <button className="button button-inverted">Registrera avbetalning</button>
                 </form>
             </section>
 
@@ -103,7 +103,7 @@ export const DebtDetail = () => {
                 <h3>Tidigare betalningar</h3>
 
                 {payments.length === 0 ? (
-                    <p>Inga registrerade betalningar</p>
+                    <p>Inga registrerade avbetalningar</p>
                 ) : (
                     <div className="payment-history-list">
                         {payments.map((payment) => (

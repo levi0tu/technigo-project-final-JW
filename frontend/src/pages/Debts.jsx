@@ -23,7 +23,7 @@ export const Debts = () => {
 
         const fetchDebts = async () => {
             setIsLoading(true)
-            const data = await getDebts(user.id)
+            const data = await getDebts()
             setDebts(data)
             setIsLoading(false)
         }
@@ -41,10 +41,8 @@ export const Debts = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const data = await createDebt({
-            ...formData,
-            userId: user.id,
-        })
+        const data = await createDebt(formData)
+
         setDebts([...debts, data])
         setFormData({
             name: "",

@@ -125,8 +125,9 @@ app.post("/login", async (req, res) => {
   })
 })
 
-app.post("/debts", async (req, res) => {
-  const { userId, name, totalAmount, monthlyPayment, interestRate } = req.body
+app.post("/debts", authenticateUser, async (req, res) => {
+  const { name, totalAmount, monthlyPayment, interestRate } = req.body
+  const userId = req.user.id
 
   if (!name || !totalAmount || !monthlyPayment || !interestRate) {
     res.status(404).json({ message: "Alla fält måste fyllas i" })
@@ -146,12 +147,10 @@ app.post("/debts", async (req, res) => {
   res.status(201).json(newDebt)
 })
 
-app.get("/debts", async (req, res) => {
-  const { userId } = req.query
+app.get("/debts", authenticateUser, async (req, res) => {
+  const userId = req.user.id
 
-  const debts = userId
-    ? await Debt.find({ userId })
-    : await Debt.find()
+  const debts = await Debt.find({ userId })
 
   const debtsWithPayments = await Promise.all(
     debts.map(async (debt) => {
@@ -170,18 +169,38 @@ app.get("/debts", async (req, res) => {
   res.json(debtsWithPayments)
 })
 
-app.get("/debts/:id", async (req, res) => {
-  const debt = await Debt.findById(req.params.id)
+app.get("/debts/:id", authenticateUser, async (req, res) => {
+  const debt = await Debt.findOne({
+    _id: req.params.id,
+    userId: req.user.id,
+  })
+
+  if (!debt) {
+    res.status(404).json({ message: "Skulden finns inte" })
+    return
+  }
+
   res.json(debt)
 })
 
-app.post("/payments", async (req, res) => {
+app.post("/payments", authenticateUser, async (req, res) => {
   const { debtId, amount, paymentDate } = req.body
 
   if (!debtId || !amount || !paymentDate) {
     res.status(400).json({ message: "Alla betalningsfält måste fyllas i" })
     return
   }
+
+  const debt = await Debt.findOne({
+    _id: debtId,
+    userId: req.user.id,
+  })
+
+  if (!debt) {
+    res.status(404).json({ message: "Skulden finns inte" })
+    return
+  }
+
   const newPayment = new Payment({
     debtId,
     amount,
@@ -193,7 +212,17 @@ app.post("/payments", async (req, res) => {
   res.status(201).json(newPayment)
 })
 
-app.get("/payments/:debtId", async (req, res) => {
+app.get("/payments/:debtId", authenticateUser, async (req, res) => {
+  const debt = await Debt.findOne({
+    _id: req.params.debtId,
+    userId: req.user.id,
+  })
+
+  if (!debt) {
+    res.status(404).json({ message: "Skulden finns inte" })
+    return
+  }
+
   const payments = await Payment.find({ debtId: req.params.debtId })
   res.json(payments)
 })
@@ -222,18 +251,44 @@ app.get("/lessons", async (req, res) => {
   res.json(lessons)
 })
 
-app.patch("/debts/:id", async (req, res) => {
-  const updatedDebt = await Debt.findByIdAndUpdate(
-    req.params.id,
-    req.body,
+app.patch("/debts/:id", authenticateUser, async (req, res) => {
+  const { name, totalAmount, monthlyPayment, interestRate } = req.body
+
+  const updatedFields = {
+    name,
+    totalAmount,
+    monthlyPayment,
+    interestRate,
+  }
+
+  const updatedDebt = await Debt.findOneAndUpdate(
+    {
+      _id: req.params.id,
+      userId: req.user.id,
+    },
+    updatedFields,
     { new: true }
   )
+
+  if (!updatedDebt) {
+    res.status(404).json({ message: "Skulden finns inte" })
+    return
+  }
 
   res.json(updatedDebt)
 })
 
-app.delete("/debts/:id", async (req, res) => {
-  await Debt.findByIdAndDelete(req.params.id)
+app.delete("/debts/:id", authenticateUser, async (req, res) => {
+  const deletedDebt = await Debt.findOneAndDelete({
+    _id: req.params.id,
+    userId: req.user.id,
+  })
+
+  if (!deletedDebt) {
+    res.status(404).json({ message: "Skulden finns inte" })
+    return
+  }
+
   res.json({ message: "Skulden har tagits bort" })
 })
 
