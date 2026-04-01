@@ -10,6 +10,7 @@ export const DebtDetail = () => {
     const [debt, setDebt] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [payments, setPayments] = useState([])
+    const [errorMessage, setErrorMessage] = useState("")
     const [paymentFormData, setPaymentFormData] = useState({
         amount: "",
         paymentDate: "",
@@ -39,8 +40,18 @@ export const DebtDetail = () => {
     }
 
     const handlePaymentSubmit = async (event) => {
+        setErrorMessage("")
         event.preventDefault()
 
+        if (Number(paymentFormData.amount) <= 0) {
+            setErrorMessage("Betalningsbelopp måste vara större än 0")
+            return
+        }
+
+        if (!paymentFormData.paymentDate) {
+            setErrorMessage("Betalningsdatum måste fyllas i")
+            return
+        }
         const data = await createPayment({
             ...paymentFormData,
             debtId: id,
@@ -85,6 +96,8 @@ export const DebtDetail = () => {
                         type="number"
                         value={paymentFormData.amount}
                         onChange={handlePaymentChange}
+                        required
+                        min="1"
                     />
 
                     <label htmlFor="paymentDate">Betalningsdatum</label>
@@ -94,9 +107,11 @@ export const DebtDetail = () => {
                         type="date"
                         value={paymentFormData.paymentDate}
                         onChange={handlePaymentChange}
+                        required
                     />
                     <button className="button button-inverted">Registrera avbetalning</button>
                 </form>
+                {errorMessage && <p className="auth-error">{errorMessage}</p>}
             </section>
 
             <section className="payments-history">

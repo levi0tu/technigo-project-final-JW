@@ -12,16 +12,27 @@ export const Register = () => {
     })
     const [message, setMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         setMessage("")
+
+        if (!formData.name.trim()) {
+            setMessage("Namn måste fyllas i.")
+            return
+        }
+        if (formData.password.length < 6) {
+            setMessage("Lösenordet måste vara minst 6 tecken.")
+            return
+        }
+
         setIsLoading(true)
         const data = await registerUser(formData)
         setIsLoading(false)
 
         setMessage(data.message)
+
         if (data.user) {
             setFormData({
                 name: "",
@@ -61,6 +72,7 @@ export const Register = () => {
                             onChange={handleChange}
                             required
                             autoComplete="name"
+                            maxLength={100}
                         />
                         <label htmlFor="email">E-post</label>
                         <input
@@ -81,6 +93,7 @@ export const Register = () => {
                             onChange={handleChange}
                             required
                             autoComplete="new-password"
+                            minLength={6}
                         />
                         <button className="button button-primary" disabled={isLoading}>
                             {isLoading ? "Skapar konto..." : "Skapa konto"}

@@ -10,15 +10,19 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState(null)
 
+    // When the app loads, check if a token is stored
+    // and fetch the logged-in user from backend
     useEffect(() => {
         const checkLoggedInUser = async () => {
             const token = localStorage.getItem("token")
-            //Om token finns, fråga /me - om den lyckas sätt användaren, om den misslyckas remove användaren(rensa localstorage)
+
             if (!token) return
 
             const data = await getMe()
 
             if (data?.id) {
+                // If the token is valid, store the user in context and localstorage
+                // if it fails the user is cleared from localstorage.
                 setIsLoggedIn(true)
                 setUser(data)
                 localStorage.setItem("user", JSON.stringify(data))

@@ -28,6 +28,7 @@ const jwtSecret = process.env.JWT_SECRET
 app.use(cors())
 app.use(express.json())
 
+// Checks that the request includes a valid JWT and stores the user data in req.user
 const authenticateUser = (req, res, next) => {
   const authHeader = req.header("Authorization")
 
@@ -36,6 +37,7 @@ const authenticateUser = (req, res, next) => {
     return
   }
 
+  // The token is sent in the authorization header as: Bearer <token>
   const token = authHeader.replace("Bearer ", "")
 
   try {
@@ -173,6 +175,7 @@ app.get("/debts", authenticateUser, async (req, res) => {
   res.json(debtsWithPayments)
 })
 
+// Only return payments if the debt belongs to the logged-in user
 app.get("/debts/:id", authenticateUser, async (req, res) => {
   const debt = await Debt.findOne({
     _id: req.params.id,
@@ -195,6 +198,7 @@ app.post("/payments", authenticateUser, async (req, res) => {
     return
   }
 
+  // Make sure the payment is only added to a debt that belongs to the logged-in user
   const debt = await Debt.findOne({
     _id: debtId,
     userId: req.user.id,
@@ -270,6 +274,8 @@ app.get("/me", authenticateUser, async (req, res) => {
   })
 
 })
+
+// Only update the fields that were actually sent in the new request
 app.patch("/debts/:id", authenticateUser, async (req, res) => {
   const { name, totalAmount, monthlyPayment, interestRate } = req.body
 

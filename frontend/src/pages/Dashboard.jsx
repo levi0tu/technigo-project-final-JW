@@ -13,12 +13,12 @@ export const Dashboard = () => {
     useEffect(() => {
         if (!user) return
 
-        const fetchDachboardData = async () => {
+        const fetchDashboardData = async () => {
             const data = await getDashboardData()
             setDashboardData(data)
         }
 
-        fetchDachboardData()
+        fetchDashboardData()
     }, [user])
     const navigate = useNavigate()
 

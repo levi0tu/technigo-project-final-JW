@@ -19,9 +19,23 @@ export const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         setErrorMessage("")
+
+        if (!formData.email.trim()) {
+            setErrorMessage("E-post måste fyllas i.")
+            return
+        }
+
+        if (!formData.password) {
+            setErrorMessage("Lösenord måste fyllas i.")
+            return
+        }
         setIsLoading(true)
 
-        const data = await loginUser(formData)
+        const data = await loginUser({
+            ...formData,
+            email: formData.email.trim(),
+        })
+
         setIsLoading(false)
         setErrorMessage(data.message)
 

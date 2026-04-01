@@ -1,8 +1,8 @@
 const BASE_URL = "http://localhost:8080"
 
 
-// Hämtar dashboard-data för den inloggade användaren
-//Token skickas med i Authorization headern så att backend kan identifiera användaren.
+// Fetch dashboard-data for the logged in user
+//The token is sent in the Authorization header so backend can identify the user.
 export const getDashboardData = async () => {
     const token = localStorage.getItem("token")
 
@@ -12,7 +12,7 @@ export const getDashboardData = async () => {
         },
     })
 
-    //Om token är ogiltig eller saknas loggas användaren ut och skickas till login
+    //If the token is invalid or missing, clear saved auth data and send the user to login page
     if (response.status === 401) {
         localStorage.removeItem("token")
         localStorage.removeItem("user")

@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { LuWallet } from "react-icons/lu";
 import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
 import { AuthContext } from "../context/AuthContext"
 import { formatCurrency } from "../utility/formatCurrency.js"
-import { useLocation } from "react-router-dom"
 
 export const Debts = () => {
     const [debts, setDebts] = useState([])
     const { user } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(true)
+    const [errorMessage, setErrorMessage] = useState("")
     const [formData, setFormData] = useState({
         name: "",
         totalAmount: "",
@@ -40,7 +40,29 @@ export const Debts = () => {
     }
 
     const handleSubmit = async (event) => {
+        setErrorMessage("")
         event.preventDefault()
+
+        if (!formData.name.trim()) {
+            setErrorMessage("Fyll i ett namn för skulden")
+            return
+        }
+
+        if (Number(formData.totalAmount) <= 0) {
+            setErrorMessage("Beloppet måste vara större än 0")
+            return
+        }
+
+        if (Number(formData.monthlyPayment) <= 0) {
+            setErrorMessage("Månadsbetalning måste vara större än 0")
+            return
+        }
+
+        if (Number(formData.interestRate) < 0) {
+            setErrorMessage("Räntan kan inte vara negativ")
+            return
+        }
+
         const data = await createDebt(formData)
 
         setDebts([...debts, data])
@@ -162,6 +184,7 @@ export const Debts = () => {
                         <button className="button button-primary">Lägg till skuld</button>
 
                     </form>
+                    {errorMessage && <p className="auth-error">{errorMessage}</p>}
                 </section>
             </div>
         </Layout >

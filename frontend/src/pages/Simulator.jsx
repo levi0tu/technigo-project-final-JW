@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { formatCurrency } from "../utility/formatCurrency.js"
 import { BsCalculator, BsInfoCircle } from "react-icons/bs"
-import { HiMiniCheckBadge, HiMiniExclamationTriangle } from "react-icons/hi2"
 
 export const Simulator = () => {
     const [formData, setFormData] = useState({
