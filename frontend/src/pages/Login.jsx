@@ -26,7 +26,9 @@ export const Login = () => {
         setErrorMessage(data.message)
 
         if (data.user) {
+
             localStorage.setItem("token", data.token)
+            localStorage.setItem("user", JSON.stringify(data.user))
             setIsLoggedIn(true)
             setUser(data.user)
             navigate("/dashboard")

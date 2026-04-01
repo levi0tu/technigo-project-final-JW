@@ -24,6 +24,7 @@ export const Dashboard = () => {
 
     const handleLogout = () => {
         localStorage.removeItem("token")
+        localStorage.removeItem("user")
         setIsLoggedIn(false)
         setUser(null)
         navigate("/login")

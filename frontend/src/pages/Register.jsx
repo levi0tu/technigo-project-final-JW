@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Layout } from "../components/Layout"
 import { registerUser } from "../services/auth"
 
@@ -12,6 +12,7 @@ export const Register = () => {
     })
     const [message, setMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -27,6 +28,7 @@ export const Register = () => {
                 email: "",
                 password: "",
             })
+            navigate("/login")
         }
 
     }

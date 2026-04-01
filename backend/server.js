@@ -81,7 +81,11 @@ app.post("/register", async (req, res) => {
 
     res.status(201).json({
       message: "Användare registrerad",
-      user: newUser,
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+      },
     })
   } catch (error) {
     res.status(500).json({ message: "Något gick fel" })
@@ -251,15 +255,30 @@ app.get("/lessons", async (req, res) => {
   res.json(lessons)
 })
 
+app.get("/me", authenticateUser, async (req, res) => {
+  const user = await User.findById(req.user.id)
+
+  if (!user) {
+    res.status(404).json({ message: "Användaren finns inte" })
+    return
+  }
+
+  res.json({
+    id: user._id,
+    name: user.name,
+    email: user.email,
+  })
+
+})
 app.patch("/debts/:id", authenticateUser, async (req, res) => {
   const { name, totalAmount, monthlyPayment, interestRate } = req.body
 
-  const updatedFields = {
-    name,
-    totalAmount,
-    monthlyPayment,
-    interestRate,
-  }
+  const updatedFields = {}
+  if (name !== undefined) updatedFields.name = name
+  if (totalAmount !== undefined) updatedFields.totalAmount = totalAmount
+  if (monthlyPayment !== undefined) updatedFields.monthlyPayment = monthlyPayment
+  if (interestRate !== undefined) updatedFields.interestRate = interestRate
+
 
   const updatedDebt = await Debt.findOneAndUpdate(
     {
@@ -267,7 +286,10 @@ app.patch("/debts/:id", authenticateUser, async (req, res) => {
       userId: req.user.id,
     },
     updatedFields,
-    { new: true }
+    {
+      new: true,
+      runValidators: true,
+    }
   )
 
   if (!updatedDebt) {

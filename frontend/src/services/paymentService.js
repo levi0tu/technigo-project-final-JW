@@ -8,7 +8,13 @@ export const getPaymentsByDebtId = async (debtId) => {
             Authorization: `Bearer ${token}`,
         },
     })
-
+    //Om token är ogiltig eller saknas loggas användaren ut och skickas till login
+    if (response.status === 401) {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        window.location.href = "/login"
+        return
+    }
     const data = await response.json()
     return data
 }
@@ -25,6 +31,12 @@ export const createPayment = async (formData) => {
         body: JSON.stringify(formData),
     })
 
+    if (response.status === 401) {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        window.location.href = "/login"
+        return
+    }
     const data = await response.json()
     return data
 }
