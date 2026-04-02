@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react"
 import { getMe } from "../services/auth"
-import { set } from "mongoose"
 
 export const AuthContext = createContext(null)
 

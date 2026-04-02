@@ -40,12 +40,18 @@ export const Login = () => {
         setErrorMessage(data.message)
 
         if (data.user) {
-
             localStorage.setItem("token", data.token)
             localStorage.setItem("user", JSON.stringify(data.user))
             setIsLoggedIn(true)
             setUser(data.user)
             navigate("/dashboard")
+            return
+        }
+
+        if (data.message === "Fel lösenord" || data.message === "Användaren finns inte") {
+            setErrorMessage(data.message || "E-post eller lösenord är fel.")
+        } else {
+            setErrorMessage(data.message || "Det gick inte att logga in just nu. Försök igen om en stund.")
         }
     }
     const handleChange = (event) => {
@@ -55,7 +61,6 @@ export const Login = () => {
             [name]: value,
         })
     }
-
 
     return (
         <Layout>

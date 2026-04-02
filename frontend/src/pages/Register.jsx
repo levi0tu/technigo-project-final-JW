@@ -40,9 +40,16 @@ export const Register = () => {
                 password: "",
             })
             navigate("/login")
+            return
         }
 
+        if (data.message === "E-postadressen används redan") {
+            setMessage("Den här e-postadressen används redan.")
+        } else {
+            setMessage(data.message || "Kontot kunde inte skapas just nu. Försök igen om en stund.")
+        }
     }
+
     const handleChange = (event) => {
         const { name, value } = event.target
 

@@ -19,11 +19,25 @@ export const DebtDetail = () => {
     useEffect(() => {
         const fetchDebt = async () => {
             const data = await getDebtById(id)
+
+            if (data?.message) {
+                setErrorMessage("Det gick inte att hämta skulden just nu.")
+                setIsLoading(false)
+                return
+            }
+
             setDebt(data)
 
             const paymentData = await getPaymentsByDebtId(id)
-            setPayments(paymentData)
 
+            if (paymentData?.message) {
+                setErrorMessage("Det gick inte att hämta betalningarna just nu.")
+                setPayments([])
+                setIsLoading(false)
+                return
+            }
+
+            setPayments(paymentData)
             setIsLoading(false)
         }
 
@@ -56,6 +70,11 @@ export const DebtDetail = () => {
             ...paymentFormData,
             debtId: id,
         })
+
+        if (data?.message) {
+            setErrorMessage("Det gick inte att skapa betalningen. Kontrollera uppgifterna och försök igen.")
+            return
+        }
 
         setPayments([...payments, data])
         setPaymentFormData({

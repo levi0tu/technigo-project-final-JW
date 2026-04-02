@@ -24,6 +24,13 @@ export const Debts = () => {
         const fetchDebts = async () => {
             setIsLoading(true)
             const data = await getDebts()
+
+            if (data?.message) {
+                setErrorMessage("Det gick inte att hämta dina skulder just nu.")
+                setIsLoading(false)
+                return
+            }
+
             setDebts(data)
             setIsLoading(false)
         }
@@ -64,6 +71,11 @@ export const Debts = () => {
         }
 
         const data = await createDebt(formData)
+
+        if (data?.message) {
+            setErrorMessage("Skulden kunde inte sparas. Kontrollera uppgifterna och försök igen.")
+            return
+        }
 
         setDebts([...debts, data])
         setFormData({
