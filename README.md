@@ -1,27 +1,77 @@
-# Final project
-This is a so called mono-repo, meaning it includes both frontend and backend. You will find three README files in this project, and how you decide to structure the information about your project is up to you.
+# Växla Upp
+Växla Upp is a full-stack web application that helps users get a clearer overview of their debts, payments, and everyday financial choices. The app combines practical debt tracking with educational content and a payment simulator to support smarter financial decisions.
 
 ---
 
-Replace this readme with your own information about the project. You can include things like:
+## Features
+- Register and log in with a personal account
+- View a dashboard with a debt overview
+- Add and manage debts
+- Register payments for individual debts
+- View payment history
+- Compare direct purchase vs installment payments in the simulator
+- Read financial lessons and tips
 
-- Brief description of the assignment
-- How you approached the task, what tools and techniques you used, and how you planned it
-- If you had more time, what would be next?
-- How to run the project locally
+## Tech Stack
+- React
+- React Router
+- JavaScript
+- CSS
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT
+- bcryptjs
 
-## View it live
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+## Project Structure
+- `frontend/` – React client
+- `backend/` – Express API and MongoDB models
 
+## API Endpoints
+- `POST /register`
+- `POST /login`
+- `GET /me`
+- `GET /dashboard`
+- `GET /debts`
+- `POST /debts`
+- `GET /debts/:id`
+- `PATCH /debts/:id`
+- `DELETE /debts/:id`
+- `GET /payments/:debtId`
+- `POST /payments`
+- `GET /lessons`
 
-## Getting Started with the Project
+## Security
+Passwords are hashed with bcryptjs
+Protected routes use JWT authentication
+Users can only access their own debts and payments
+Frontend and backend validation are used for safer input handling
+
+## Process and Challenges
+I built the project step by step, starting with the main functionality for authentication, debts, and payments. After that, I focused on improving the user experience with a dashboard, simulator, and learning content.
+
+The biggest challenge was making authentication and route protection work properly across the whole app. Another challenge was making the interface feel clear and consistent while also improving validation, error handling, and responsiveness.
 
 ### Dependency Installation & Startup Development Server
+The project is split into a `frontend` and a `backend`.
 
-Once cloned, navigate to the project's root directory and this project uses npm (Node Package Manager) to manage its dependencies.
-
-The command below is a combination of installing dependencies, opening up the project on VS Code and it will run a development server on your terminal.
-
+Start the backend:
 ```bash
-npm i && code . && npm run dev
-```
+cd backend
+npm install
+npm run dev
+
+Start the frontend in a separate terminal:
+cd frontend
+npm install
+npm run dev
+
+Create a .env file in the backend folder with:
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=8080
+
+## View it live
+
+
