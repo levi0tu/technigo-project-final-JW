@@ -73,5 +73,5 @@ JWT_SECRET=your_secret_key
 PORT=8080
 
 ## View it live
-
+https://vaxlaupp.netlify.app
 
