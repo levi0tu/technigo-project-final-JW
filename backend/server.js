@@ -24,15 +24,19 @@ const app = express()
 
 const jwtSecret = process.env.JWT_SECRET
 
-const corsOptions = {
-  origin: ["https://vaxlaupp.netlify.app", "http://localhost:5173"],
-  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}
+// Allow requests from the deployed frontend and handle preflight requests.
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://vaxlaupp.netlify.app")
+  res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS")
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
-// Add middlewares to enable cors and json body parsing
-app.use(cors(corsOptions))
-app.options("*", cors(corsOptions))
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204)
+  }
+
+  next()
+})
+
 app.use(express.json())
 
 // Checks that the request includes a valid JWT and stores the user data in req.user
