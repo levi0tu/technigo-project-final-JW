@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { LuWallet } from "react-icons/lu";
 import { Layout } from "../components/Layout"
 import { createDebt, getDebts } from "../services/debtService"
