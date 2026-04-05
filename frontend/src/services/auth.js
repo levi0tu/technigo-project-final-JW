@@ -34,20 +34,20 @@ export const registerUser = async (formData) => {
 }
 
 export const getMe = async () => {
-    const token = localStorage.getItem("token")
+    try {
+        const token = localStorage.getItem("token")
 
-    const response = await fetch(`${BASE_URL}/me`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    })
-
-    if (response.status === 401) {
-        localStorage.removeItem("token")
-        localStorage.removeItem("user")
-        window.location.href = "/login"
-        return
+        const response = await fetch(`${BASE_URL}/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+        if (response.status === 401) {
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        return { message: "Det gick inte att hämta användaren just nu." }
     }
-    const data = await response.json()
-    return data
 }

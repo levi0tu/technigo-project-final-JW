@@ -9,12 +9,9 @@ export const getPaymentsByDebtId = async (debtId) => {
                 Authorization: `Bearer ${token}`,
             },
         })
-        //Om token är ogiltig eller saknas loggas användaren ut och skickas till login
+
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
         const data = await response.json()
         return data
@@ -37,10 +34,7 @@ export const createPayment = async (formData) => {
         })
 
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
         const data = await response.json()
         return data

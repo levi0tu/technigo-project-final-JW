@@ -11,6 +11,7 @@ export const Debts = () => {
     const { user } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: "",
         totalAmount: "",
@@ -24,6 +25,12 @@ export const Debts = () => {
         const fetchDebts = async () => {
             setIsLoading(true)
             const data = await getDebts()
+
+
+            if (data?.unauthorized) {
+                handleLogout()
+                return
+            }
 
             if (data?.message) {
                 setErrorMessage("Det gick inte att hämta dina skulder just nu.")
@@ -85,7 +92,11 @@ export const Debts = () => {
             interestRate: "",
         })
     }
-
+    const handleLogout = () => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        navigate("/login")
+    }
     useEffect(() => {
         if (isLoading) return
         if (!location.hash) return

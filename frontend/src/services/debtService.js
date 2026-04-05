@@ -1,7 +1,5 @@
 const BASE_URL = import.meta.env.VITE_API_URL
 
-
-
 export const getDebts = async () => {
     try {
         const token = localStorage.getItem("token")
@@ -11,12 +9,8 @@ export const getDebts = async () => {
                 Authorization: `Bearer ${token}`,
             },
         })
-        //Om token är ogiltig eller saknas loggas användaren ut och skickas till login
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
 
         const data = await response.json()
@@ -37,10 +31,7 @@ export const getDebtById = async (id) => {
         })
 
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
         const data = await response.json()
         return data
@@ -63,10 +54,7 @@ export const createDebt = async (formData) => {
         })
 
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
 
         const data = await response.json()

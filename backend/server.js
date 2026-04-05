@@ -1,7 +1,6 @@
 import dotenv from "dotenv"
 dotenv.config()
 import express from "express"
-import cors from "cors"
 import mongoose from "mongoose"
 import { User } from "./models/User.js"
 import { Debt } from "./models/Debt.js"
@@ -24,9 +23,16 @@ const app = express()
 
 const jwtSecret = process.env.JWT_SECRET
 
-// Allow requests from the deployed frontend and handle preflight requests.
+// Allow requests from the deployed frontend and local development frontend.
+const allowedOrigins = ["https://vaxlaupp.netlify.app", "http://localhost:5173"]
+
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://vaxlaupp.netlify.app")
+  const origin = req.headers.origin
+
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin)
+  }
+
   res.header("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS")
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization")
 

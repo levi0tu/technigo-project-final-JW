@@ -13,12 +13,9 @@ export const getDashboardData = async () => {
             },
         })
 
-        //If the token is invalid or missing, clear saved auth data and send the user to login page
+        //If the token is invalid or missing, send the user a message
         if (response.status === 401) {
-            localStorage.removeItem("token")
-            localStorage.removeItem("user")
-            window.location.href = "/login"
-            return { message: "Din inloggning har gått ut. Logga in igen." }
+            return { unauthorized: true, message: "Din inloggning har gått ut. Logga in igen." }
         }
 
         const data = await response.json()

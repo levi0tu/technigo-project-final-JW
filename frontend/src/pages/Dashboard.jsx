@@ -15,6 +15,11 @@ export const Dashboard = () => {
 
         const fetchDashboardData = async () => {
             const data = await getDashboardData()
+
+            if (data?.unauthorized) {
+                handleLogout()
+                return
+            }
             setDashboardData(data)
         }
 
