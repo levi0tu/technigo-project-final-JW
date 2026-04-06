@@ -8,7 +8,7 @@ import { formatCurrency } from "../utility/formatCurrency.js"
 
 export const Debts = () => {
     const [debts, setDebts] = useState([])
-    const { user } = useContext(AuthContext)
+    const { user, setUser, setIsLoggedIn } = useContext(AuthContext)
     const [isLoading, setIsLoading] = useState(true)
     const [errorMessage, setErrorMessage] = useState("")
     const navigate = useNavigate()
@@ -25,7 +25,6 @@ export const Debts = () => {
         const fetchDebts = async () => {
             setIsLoading(true)
             const data = await getDebts()
-
 
             if (data?.unauthorized) {
                 handleLogout()
@@ -79,6 +78,10 @@ export const Debts = () => {
 
         const data = await createDebt(formData)
 
+        if (data?.unauthorized) {
+            handleLogout()
+            return
+        }
         if (data?.message) {
             setErrorMessage("Skulden kunde inte sparas. Kontrollera uppgifterna och försök igen.")
             return
@@ -95,6 +98,8 @@ export const Debts = () => {
     const handleLogout = () => {
         localStorage.removeItem("token")
         localStorage.removeItem("user")
+        setIsLoggedIn(false)
+        setUser(null)
         navigate("/login")
     }
     useEffect(() => {

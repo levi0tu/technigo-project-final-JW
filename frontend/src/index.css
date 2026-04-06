@@ -3,15 +3,15 @@
     --color-bg: #0b1020;
     --color-surface: #1a1b2e;
     --color-bg-overlay-light: rgba(11, 16, 32, 0.08);
-    --color-bg-overlay-medium: rgba(11, 16, 32, 0.72);
-    --color-bg-overlay-strong: rgba(11, 16, 32, 0.92);
 
     /* Brand */
     --color-positive: #00ff9d;
-    --color-data: #00d1ff;
+    --color-positive-icon: #00ff9d24;
+    --color-data: rgb(0, 209, 255);
+    --color-data-icon: rgba(0, 209, 255, 0.14);
     --color-learning: #7000ff;
-    --color-learning-light: #b48cff;
-    --color-learning-soft: rgba(112, 0, 255, 0.14);
+    --color-learning-light: rgb(180, 140, 255);
+    --color-learning-icon: rgba(112, 0, 255, 0.14);
     --color-learning-deep: rgba(69, 0, 160, 0.22);
     --color-learning-border: rgba(112, 0, 255, 0.16);
 
@@ -19,6 +19,7 @@
     --color-text: #f9fafb;
     --color-text-muted: #9ca3af;
     --color-text-dark: #0f1115;
+
     /* Interactive surfaces and cards*/
     --color-button-primary: #8cd8bb;
     --color-button-inverted: #eeefff;
@@ -28,9 +29,6 @@
     --color-card-highlight: #4ade801f;
     --color-card-border: #ffffff28;
     /* Gradients */
-    --gradient-primary: linear-gradient(180deg, #00ff9d 00%, #125340 100%);
-    --gradient-secondary: linear-gradient(180deg, #0093b4 0%, #006f88 100%);
-    --gradient-tertiary: linear-gradient(180deg, #6f00ff1e 0%, #4500a056 100%);
     --gradient-radial: radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 25%);
     --gradient-linear-green: linear-gradient(180deg, #16f1a1 0%, #118d63 55%, #0f5a46 100%);
     --gradient-linear-blue: linear-gradient(180deg, rgba(0, 209, 255, 0.12) 0%, rgba(0, 111, 136, 0.18) 100%);
@@ -39,9 +37,6 @@
     --radius: 12px;
     --color-overlay-soft: rgba(255, 255, 255, 0.03);
     --color-overlay-medium: rgba(255, 255, 255, 0.08);
-    --color-overlay-strong: rgba(255, 255, 255, 0.14);
-    --color-surface-inverted: rgba(255, 255, 255, 0.75);
-
 }
 
 * {
@@ -109,7 +104,7 @@ input {
     color: var(--color-text);
 }
 
-i input:focus,
+input:focus,
 input:focus-visible {
     outline: none;
     border-color: var(--color-positive);
@@ -278,14 +273,6 @@ nav a:hover {
     max-width: 24rem;
 }
 
-.debts-summary-card2 {
-    padding: 1.25rem;
-    margin: 1rem 0 1.5rem;
-    background: var(--gradient-radial);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 10px #7000ff;
-}
-
 .debts-summary-card {
     padding: 1.25rem;
     margin: 1rem 0 1.5rem;
@@ -314,23 +301,18 @@ nav a:hover {
 }
 
 .value-icon-cyan {
-    background: rgba(0, 209, 255, 0.14);
+    background: var(--color-data-icon);
     color: var(--color-secondary);
 }
 
 .value-icon-teal {
-    background: rgba(0, 255, 157, 0.14);
+    background: var(--color-positive-icon);
     color: var(--color-positive);
 }
 
 .value-icon-purple {
-    background: rgba(112, 0, 255, 0.14);
+    background: var(--color-learning-icon);
     color: var(--color-learning-light);
-}
-
-.value-icon-red {
-    background: var(--color-surface);
-    color: var(--danger);
 }
 
 /*Buttons*/
@@ -576,8 +558,8 @@ form button {
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
     max-width: 30rem;
 }
@@ -663,14 +645,6 @@ form button {
 }
 
 /*Dashboard*/
-
-.stat-card {
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
-    border-radius: var(--radius);
-    padding: 1rem;
-}
-
 .dashboard-stats {
     display: grid;
     gap: 1rem;
@@ -852,8 +826,8 @@ form button {
             rgba(11, 16, 32, 0.78) 48%,
             rgba(11, 16, 32, 0.96) 100%);
     padding: 0.8rem;
-    backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }
 
 .learn-featured-overlay h2 {
@@ -920,8 +894,8 @@ form button {
             var(--color-overlay-soft) 100%);
     border: 1px solid var(--color-card-border);
     box-shadow: 0 14px 32px var(--color-card-highlight);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
 }
 
 .auth-link {
@@ -985,8 +959,12 @@ form button {
         min-height: 100%;
     }
 
-    .simulator-results {
-        grid-template-columns: repeat(2, 1fr);
+
+    .simulator-highlight-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 2rem;
+        margin-top: 1.25rem;
     }
 
     .home-hero {

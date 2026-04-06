@@ -192,7 +192,7 @@ app.get("/debts", authenticateUser, async (req, res) => {
   res.json(debtsWithPayments)
 })
 
-// Only return payments if the debt belongs to the logged-in user
+// Only return the debts if it belongs to the logged-in user
 app.get("/debts/:id", authenticateUser, async (req, res) => {
   const debt = await Debt.findOne({
     _id: req.params.id,
